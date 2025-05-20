@@ -67,17 +67,17 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('dumper')
   </head>
-  <body class="flex">
+  <body class="flex bg-black">
     @include('components/navbar')
-    <section class="bg-black border border-sand-8 w-[50%]">
+    <section class="bg-black w-[50%]">
       <div class="flex justify-between border border-sand-8  p-5">
         <P class="font-bold text-[#D9D9D9]">Home</P>
         <img src="/icons/Notifications.svg" alt="">
       </div>
-      <form class="border border-sand-8">
+      <form class="border border-sand-8 bg-black ">
         <div class="flex p-5 gap-2 pb-0">
           <img src="/icons/Notifications.svg" alt="">
-          <input type="text" class="bg-black font-bold hover:border rounded-[30px] p-2 w-[70%]" placeholder="What's happening ?">
+          <input type="text" class="bg-black font-bold border border-black hover:border-blue-400 rounded-[30px] p-2 w-[70%]" placeholder="What's happening ?">
         </div>
         <div class="flex justify-between px-5">
           <div class="flex p-5 gap-2">
@@ -87,33 +87,152 @@
             <a href=""><img src="/icons/Notifications.svg" alt=""></a>
             <a href=""><img src="/icons/Notifications.svg" alt=""></a>
           </div>
-          <a class="w-[100px] h-[50px] rounded-[30px] bg-blue-400 text-[#D9D9D9] font-bold flex items-center justify-center hover:bg-black border border-blue-400 hover:text-blue-400 hover:border-blue-400" href=""><p class="">Tweet</p></a>
+          <a class="w-[90px] h-[40px] rounded-[30px] bg-blue-400 text-[#D9D9D9] font-bold flex items-center justify-center hover:bg-black border border-blue-400 hover:text-blue-400 hover:border-blue-400" href=""><p class="">Tweet</p></a>
         </div>
       </form>
-      <section>
-        <img src="" alt="">
+      <section class="border border-sand-8 flex p-5 gap-3 bg-black ">
+        <img class="h-[10%]" src="/icons/Notifications.svg" alt="">
         <div>
-          <div>
-            <p></p>
-            <p></p>
+          <div class="flex gap-2">
+            <p class="font-bold  text-[#D9D9D9]">CNN</p>
+            <p class="text-sand-10">@CNN</p>
           </div>
-          <p></p>
+          <p class="w-[80%] text-[#D9D9D9]">President Joe Biden touted a new agreement reached with the European Union to ease Trump-era tariffs on aluminum and steel as a "major breakthrough" that would serve to both strengthen the US steel industry and combat the global climate crisis.</p>
           <img src="" alt="">
-          <div>
-            <div>
-              <a href=""><img src="" alt=""></a>
-              <p>52</p>
+          <div class="w-[100svh] grid grid-cols-4 pt-4">
+            <div class="flex gap-2">
+              <a href=""><img src="/icons/Notifications.svg" alt=""></a>
+              <p class="text-sand-10">52</p>
+            </div>
+            <div class="flex gap-2">
+              <a href=""><img src="/icons/Notifications.svg" alt=""></a>
+              <p class="text-sand-10">178</p>
+            </div>
+            <div class="flex gap-2">
+              <a href=""><img src="/icons/Notifications.svg" alt=""></a>
+              <p class="text-sand-10">85</p>
             </div>
             <div>
-              <a href=""><img src="" alt=""></a>
-              <p>178</p>
+              <a href=""><img src="/icons/Notifications.svg" alt=""></a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="border border-sand-8 flex p-5 gap-3 bg-black ">
+        <img class="h-[10%]" src="/icons/Notifications.svg" alt="">
+        <div>
+          <div class="flex gap-2">
+            <p class="font-bold text-[#D9D9D9]">The New York Times</p>
+            <p class="text-sand-10">@nytimes</p>
+          </div>
+          <p class="w-[80%] text-[#D9D9D9]">
+Gardening boomed during the pandemic. Six Black writers share how it has helped them re-establish, and reimagine, a connection to cultivation and the land
+          </p>
+          <img class="h-[250px] w-[500px] rounded-[30px]" src="https://png.pngtree.com/thumb_back/fh260/background/20230408/pngtree-bright-warm-color-background-of-flowers-and-flowers-image_2160309.jpg" alt="">
+          <div class="w-[100svh] grid grid-cols-4 pt-4">
+            <div class="flex gap-2">
+              <a href=""><img src="/icons/Notifications.svg" alt=""></a>
+              <p class="text-sand-10">52</p>
+            </div>
+            <div class="flex gap-2">
+              <a href=""><img src="/icons/Notifications.svg" alt=""></a>
+              <p class="text-sand-10">178</p>
+            </div>
+            <div class="flex gap-2">
+              <a href=""><img src="/icons/Notifications.svg" alt=""></a>
+              <p class="text-sand-10">85</p>
             </div>
             <div>
-              <a href=""><img src="" alt=""></a>
-              <p>85</p>
+              <a href=""><img src="/icons/Notifications.svg" alt=""></a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="border border-sand-8 flex p-5 gap-3 bg-black ">
+        <img class="h-[10%]" src="/icons/Notifications.svg" alt="">
+        <div>
+          <div class="flex gap-2">
+            <p class="font-bold  text-[#D9D9D9]">Twitter</p>
+            <p class="text-sand-10">@Twitter</p>
+          </div>
+          <p class="text-[#D9D9D9]">BIG NEWS lol jk still  Twitter</p>
+          <img src="" alt="">
+          <div class="w-[100svh] grid grid-cols-4 pt-4">
+            <div class="flex gap-2">
+              <a href=""><img src="/icons/Notifications.svg" alt=""></a>
+              <p class="text-sand-10">52</p>
+            </div>
+            <div class="flex gap-2">
+              <a href=""><img src="/icons/Notifications.svg" alt=""></a>
+              <p class="text-sand-10">178</p>
+            </div>
+            <div class="flex gap-2">
+              <a href=""><img src="/icons/Notifications.svg" alt=""></a>
+              <p class="text-sand-10">85</p>
             </div>
             <div>
-              <a href=""><img src="" alt=""></a>
+              <a href=""><img src="/icons/Notifications.svg" alt=""></a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="border border-sand-8 flex p-5 gap-3 bg-black ">
+        <img class="h-[10%]" src="/icons/Notifications.svg" alt="">
+        <div>
+          <div class="flex gap-2">
+            <p class="font-bold  text-[#D9D9D9]">Twitter</p>
+            <p class="text-sand-10">@Twitter</p>
+          </div>
+          <p class="text-[#D9D9D9]">Hello literally everyone</p>
+          <img src="" alt="">
+          <div class="w-[100svh] grid grid-cols-4 pt-4">
+            <div class="flex gap-2">
+              <a href=""><img src="/icons/Notifications.svg" alt=""></a>
+              <p class="text-sand-10">52</p>
+            </div>
+            <div class="flex gap-2">
+              <a href=""><img src="/icons/Notifications.svg" alt=""></a>
+              <p class="text-sand-10">178</p>
+            </div>
+            <div class="flex gap-2">
+              <a href=""><img src="/icons/Notifications.svg" alt=""></a>
+              <p class="text-sand-10">85</p>
+            </div>
+            <div>
+              <a href=""><img src="/icons/Notifications.svg" alt=""></a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="border border-sand-8 flex p-5 gap-3 bg-black ">
+        <img class="h-[10%]" src="/icons/Notifications.svg" alt="">
+        <div>
+          <div class="flex gap-2">
+            <p class="font-bold  text-[#D9D9D9]">Twitter</p>
+            <p class="text-sand-10">@Twitter</p>
+          </div>
+          <p class="text-[#D9D9D9]">Hello literally everyone</p>
+          <img src="" alt="">
+          <div class="w-[100svh] grid grid-cols-4 pt-4">
+            <div class="flex gap-2">
+              <a href=""><img src="/icons/Notifications.svg" alt=""></a>
+              <p class="text-sand-10">52</p>
+            </div>
+            <div class="flex gap-2">
+              <a href=""><img src="/icons/Notifications.svg" alt=""></a>
+              <p class="text-sand-10">178</p>
+            </div>
+            <div class="flex gap-2">
+              <a href=""><img src="/icons/Notifications.svg" alt=""></a>
+              <p class="text-sand-10">85</p>
+            </div>
+            <div>
+              <a href=""><img src="/icons/Notifications.svg" alt=""></a>
             </div>
           </div>
         </div>
