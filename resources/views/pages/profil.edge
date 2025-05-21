@@ -69,7 +69,8 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('dumper')
   </head>
-  <body class="flex bg-black">
+  <body id="body" >
+   <div id="allSection" class="flex bg-black">
     @include('components/navbar')
     <section class="bg-black w-[50%]">
 
@@ -176,5 +177,7 @@
 
       </section>
       @include('components/sectionSearch')
+   </div>
+   @include('components/newTweet')
     </body>
   </html>

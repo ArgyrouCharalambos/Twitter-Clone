@@ -67,7 +67,8 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('dumper')
   </head>
-  <body class="flex bg-black">
+  <body id="body" >
+    <div id="allSection" class="flex bg-black">
     @include('components/navbar')
     <section class="bg-black w-[50%]">
       <div class="flex justify-between border border-sand-8  p-5">
@@ -238,8 +239,8 @@ Gardening boomed during the pandemic. Six Black writers share how it has helped 
         </div>
       </section>
     </section>  
-
     @include('components/sectionSearch')
-
+    @include('components/newTweet')
+  </div>
   </body>
 </html>
