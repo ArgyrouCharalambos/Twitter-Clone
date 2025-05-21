@@ -30,7 +30,9 @@
       }
     </style>
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com">
+      
+    </script>
 
     <script>
       tailwind.config = {
@@ -69,67 +71,110 @@
   </head>
   <body class="flex bg-black">
     @include('components/navbar')
-   <section class="bg-black w-[50%]">
+    <section class="bg-black w-[50%]">
 
-    <div>
-        <a href=""><img src="" alt=""></a>
+      <div class="flex items-center gap-3 px-8 py-4 border">
+        <a href="">          <img
+            class="w-11 h-11 hover:bg-sand-11 p-2 rounded-[50%] rounded-[50%]"
+            src="/icons/More.svg"
+            alt=""
+          /></a>
         <div>
-            <p>Argy Kaselve</p>
-            <p>0 posts</p>
+          <p class="text-[#D9D9D9] font-bold text-lg">
+            Argy Kaselve
+          </p>
+          <p class="text-sand-9">
+            0 posts
+          </p>
         </div>
-    </div>
+      </div>
 
-
-    <div>
-        <div>
-            <img src="" alt="">
-            <a href="">Edit profile</a>
+      <div class="text-[#D9D9D9] border">
+        <div class="flex justify-between items-center p-8">
+          <img
+            class="w-[150px] h-[150px] rounded-[50%]"
+            src="https://www.bcd-jeux.fr/34087-pdt_771/creart-new-york-city-format-carre-peinture-au-numero-ravensburger.jpg"
+            alt=""
+          />
+          <a class="hover:bg-[#181919] font-bold border px-3 py-2 rounded-[30px]" href="">Edit profile</a>
         </div>
-        <div>
-            <div>
-                <p>Argy Kaselve</p>
-                <p>@Argyrou_C</p>
+        <div class="p-8 flex flex-col gap-2">
+          <div>
+            <p class="text-white font-bold text-xl">
+              Argy Kaselve
+            </p>
+            <p class="text-sand-9">
+              @Argyrou_C
+            </p>
+          </div>
+          <p class="text-sand-9">
+            Joined May 2025
+          </p>
+          <div class="flex gap-2">
+            <p class="text-sand-9">
+              <span class="font-bold text-white">1</span> Followers
+            </p>
+            <p class="text-sand-9">
+              <span class="font-bold text-white">0</span> Following
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-white border p-8">
+        <p class="text-xl font-bold mb-6">
+          Who to follow
+        </p>
+        <div class="flex gap-4 mb-5">
+          <img
+            class="w-10 h-10 rounded-[50%]"
+            src="https://www.bcd-jeux.fr/34087-pdt_771/creart-new-york-city-format-carre-peinture-au-numero-ravensburger.jpg"
+            alt=""
+          />
+          <div class="flex flex-col gap-3">
+            <div class="flex justify-between items-center">
+              <div>
+                <p>
+                  CNN
+                </p>
+                <p class="text-sand-9 text-[13px]">
+                  @CNN
+                </p>
+              </div>
+              <a class="bg-white px-3 py-1 hover:bg-[#D7DBDC] rounded-[30px] text-black" href="">Follow</a>
             </div>
-            <p>Joined May 2025</p>
-            <div>
-                <p>1 Followers</p>
-                <p>0 Following</p>
-            </div>
+            <p>
+              Le plus grand site d'infos en RD CONGO. Site d’Infos générales : Politique, Sécuritaire, Économique, Sociale, Culturelle et Sportive. Infos fiables.
+            </p>
+          </div>
         </div>
-    </div>
-    
-    <div>
-        <p>Who to follow</p>
-        <div>
-            <img class="w-10 h-10 rounded-[50%]" src="https://www.bcd-jeux.fr/34087-pdt_771/creart-new-york-city-format-carre-peinture-au-numero-ravensburger.jpg" alt="">
-            <div>
-                <div>
-                    <div>
-                         <p>CNN</p>
-                         <p>@CNN</p>
-                    </div>
-                    <a href="">Follow</a>
-                </div>
-                <p>Le plus grand site d'infos en RD CONGO. Site d’Infos générales : Politique, Sécuritaire, Économique, Sociale, Culturelle et Sportive. Infos fiables.</p>
+        <div class="flex gap-4 mb-5">
+          <img
+            class="w-10 h-10 rounded-[50%]"
+            src="https://www.bcd-jeux.fr/34087-pdt_771/creart-new-york-city-format-carre-peinture-au-numero-ravensburger.jpg"
+            alt=""
+          />
+          <div class="flex flex-col gap-3">
+            <div class="flex justify-between items-center">
+              <div>
+                <p>
+                  CNN
+                </p>
+                <p class="text-sand-9 text-[13px]">
+                  @CNN
+                </p>
+              </div>
+              <a class="bg-white px-3 py-1 hover:bg-[#D7DBDC] rounded-[30px] text-black" href="">Follow</a>
             </div>
+            <p>
+              Le plus grand site d'infos en RD CONGO. Site d’Infos générales : Politique, Sécuritaire, Économique, Sociale, Culturelle et Sportive. Infos fiables.
+            </p>
+          </div>
+        </div>
 
-            <div>
-                <img class="w-10 h-10 rounded-[50%]" src="https://www.bcd-jeux.fr/34087-pdt_771/creart-new-york-city-format-carre-peinture-au-numero-ravensburger.jpg" alt="">
-                <div>
-                    <div>
-                        <div>
-                             <p>The New York Times</p>
-                             <p>@nytimes</p>
-                        </div>
-                        <a href="">Follow</a>
-                    </div>
-                    <p>Le plus grand site d'infos en RD CONGO. Site d’Infos générales : Politique, Sécuritaire, Économique, Sociale, Culturelle et Sportive. Infos fiables.</p>
-                </div>
-        </div>
-    </div>
-    <a href="">Show more</a>
-    
-   </section>
-    @include('components/sectionSearch')
-  </body>
-</html>
+        <a href="" class="hover:bg-[#080808] rounded-lg text-blue-400 p-4 w-[100%]">Show more</a>
+
+      </section>
+      @include('components/sectionSearch')
+    </body>
+  </html>
