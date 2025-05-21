@@ -15,13 +15,15 @@
     sectionTweet.style.backgroundColor = "black";
     sectionTweet.style.width = "520px";
     sectionTweet.style.height = "260px";
-    sectionTweet.style.padding = "20px";
+    sectionTweet.style.padding = "5px 20px";
     sectionTweet.style.borderRadius = "20px";
     container.appendChild(sectionTweet);
     const btnRetour = document.createElement("a");
     btnRetour.href = "/";
-    btnRetour.style.fontWeight = "bold";
-    btnRetour.textContent = "X";
+    btnRetour.style.color = 'white';
+    btnRetour.style.fontSize = '25px';
+    btnRetour.style.textDecoration = 'none';
+    btnRetour.textContent = "x";
     sectionTweet.appendChild(btnRetour);
     const groupe2 = document.createElement("div");
     sectionTweet.appendChild(groupe2);
@@ -92,6 +94,8 @@
     const btnPost = document.createElement("button");
     btnPost.textContent = "Post";
     btnPost.style.color = "black";
+    btnPost.style.width = "70px";
+    btnPost.style.height = "35px";
     btnPost.style.padding = "5px 10px";
     btnPost.style.fontWeight = "bold";
     btnPost.style.background = "white";
