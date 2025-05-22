@@ -30,7 +30,9 @@
       }
     </style>
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com">
+      
+    </script>
 
     <script>
       tailwind.config = {
@@ -67,179 +69,290 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('dumper')
   </head>
-  <body class="flex bg-black">
-    @include('components/navbar')
-    <section class="bg-black w-[50%]">
-      <div class="flex justify-between border border-sand-8  p-5">
-        <P class="font-bold text-[#D9D9D9]">Home</P>
-        <img src="/icons/Timeline-Prop.svg" alt="">
-      </div>
-      <form class="border border-sand-8 bg-black ">
-        <div class="flex p-5 gap-2 pb-0">
-          <img class="w-10 h-10 rounded-[50%]" src="https://i5.walmartimages.com/asr/63a7df2a-a706-479e-a388-5dd184fb21d8.30c3b97393fa9b8f7d0e164abc324f24.jpeg" alt="">
-          <input type="text" class="bg-black border border-black hover:border-blue-400 rounded-[30px] p-2 w-[70%]" placeholder="What's happening ?">
+  <body id="body">
+    <div id="allSection" class="flex bg-black">
+      @include('components/navbar')
+      <section class="bg-black w-[50%]">
+        <div class="flex justify-between border border-sand-8  p-5">
+          <P class="font-bold text-[#D9D9D9]">
+            Home
+          </P>
+          <img src="/icons/Timeline-Prop.svg" alt="" />
         </div>
-        <div class="flex justify-between px-5">
-          <div class="flex p-5 gap-2">
-            <a class="text-[#D9D9D9] hover:bg-sand-11 rounded-[30px] w-10 h-10 flex items-center justify-center font-bold" href=""><img src="/icons/Top-Tweets.svg" alt=""></a>
-            <a class="text-[#D9D9D9] hover:bg-sand-11 rounded-[30px] w-10 h-10 flex items-center justify-center font-bold" href=""><img src="/icons/Top-Tweets (3).svg" alt=""></a>
-            <a class="text-[#D9D9D9] hover:bg-sand-11 rounded-[30px] w-10 h-10 flex items-center justify-center font-bold" href=""><img src="/icons/Top-Tweets (5).svg" alt=""></a>
-            <a class="text-[#D9D9D9] hover:bg-sand-11 rounded-[30px] w-10 h-10 flex items-center justify-center font-bold" href=""><img src="/icons/Top-Tweets (2).svg" alt=""></a>
-            <a class="text-[#D9D9D9] hover:bg-sand-11 rounded-[30px] w-10 h-10 flex items-center justify-center font-bold" href=""><img src="/icons/Top-Tweets (4).svg" alt=""></a>
+        <form class="border border-sand-8 bg-black ">
+          <div class="flex p-5 gap-2 pb-0">
+            <img
+              class="w-10 h-10 rounded-[50%]"
+              src="https://i5.walmartimages.com/asr/63a7df2a-a706-479e-a388-5dd184fb21d8.30c3b97393fa9b8f7d0e164abc324f24.jpeg"
+              alt=""
+            />
+            <input
+              type="text"
+              class="bg-black border border-black hover:border-blue-400 rounded-[30px] p-2 w-[70%]"
+              placeholder="What's happening ?"
+            />
           </div>
-          <a class="w-[90px] h-[40px] rounded-[30px] bg-blue-400 text-[#D9D9D9] font-bold flex items-center justify-center hover:bg-black border border-blue-400 hover:text-blue-400 hover:border-blue-400" href=""><p class="">Tweet</p></a>
-        </div>
-      </form>
-      <section class="border border-sand-8 flex p-5 gap-3 bg-black ">
-        <img class="w-10 h-10 rounded-[50%]" src="https://berqwp-cdn.sfo3.cdn.digitaloceanspaces.com/cache/belleandchic.com/wp-content/uploads/2022/01/coiffure-visage-carre-3-jpg.webp" alt="">
-        <div>
-          <div class="flex gap-2">
-            <p class="font-bold  text-[#D9D9D9]">CNN</p>
-            <p class="text-sand-10">@CNN</p>
+          <div class="flex justify-between px-5">
+            <div class="flex p-5 gap-2">
+              <a
+                class="text-[#D9D9D9] hover:bg-sand-11 rounded-[30px] w-10 h-10 flex items-center justify-center font-bold"
+                href=""
+              >                <img src="/icons/Top-Tweets.svg" alt="" /></a>
+              <a
+                class="text-[#D9D9D9] hover:bg-sand-11 rounded-[30px] w-10 h-10 flex items-center justify-center font-bold"
+                href=""
+              >                <img src="/icons/Top-Tweets (3).svg" alt="" /></a>
+              <a
+                class="text-[#D9D9D9] hover:bg-sand-11 rounded-[30px] w-10 h-10 flex items-center justify-center font-bold"
+                href=""
+              >                <img src="/icons/Top-Tweets (5).svg" alt="" /></a>
+              <a
+                class="text-[#D9D9D9] hover:bg-sand-11 rounded-[30px] w-10 h-10 flex items-center justify-center font-bold"
+                href=""
+              >                <img src="/icons/Top-Tweets (2).svg" alt="" /></a>
+              <a
+                class="text-[#D9D9D9] hover:bg-sand-11 rounded-[30px] w-10 h-10 flex items-center justify-center font-bold"
+                href=""
+              >                <img src="/icons/Top-Tweets (4).svg" alt="" /></a>
+            </div>
+            <a
+              class="w-[90px] h-[40px] rounded-[30px] bg-blue-400 text-[#D9D9D9] font-bold flex items-center justify-center hover:bg-black border border-blue-400 hover:text-blue-400 hover:border-blue-400"
+              href=""
+            >              <p class="">
+                Tweet
+              </p></a>
           </div>
-          <p class="w-[80%] text-[#D9D9D9]">President Joe Biden touted a new agreement reached with the European Union to ease Trump-era tariffs on aluminum and steel as a "major breakthrough" that would serve to both strengthen the US steel industry and combat the global climate crisis.</p>
-          <img src="" alt="">
-          <div class="w-[100svh] grid grid-cols-4 pt-4">
+        </form>
+        <section class="border border-sand-8 flex p-5 gap-3 bg-black ">
+          <img
+            class="w-10 h-10 rounded-[50%]"
+            src="https://berqwp-cdn.sfo3.cdn.digitaloceanspaces.com/cache/belleandchic.com/wp-content/uploads/2022/01/coiffure-visage-carre-3-jpg.webp"
+            alt=""
+          />
+          <div>
             <div class="flex gap-2">
-              <a href=""><img src="/icons/Reply.svg" alt=""></a>
-              <p class="text-sand-10">52</p>
+              <p class="font-bold  text-[#D9D9D9]">
+                CNN
+              </p>
+              <p class="text-sand-10">
+                @CNN
+              </p>
             </div>
-            <div class="flex gap-2">
-              <a href=""><img src="/icons/Retweet.svg" alt=""></a>
-              <p class="text-sand-10">178</p>
-            </div>
-            <div class="flex items-center gap-2">
-              <a href=""><img src="/icons/Buton.svg" alt=""></a>
-              <p class="text-sand-10">85</p>
-            </div>
-            <div>
-              <a href=""><img src="/icons/Share.svg" alt=""></a>
+            <p class="w-[80%] text-[#D9D9D9]">
+              President Joe Biden touted a new agreement reached with the European Union to ease Trump-era tariffs on aluminum and steel as a "major breakthrough" that would serve to both strengthen the US steel industry and combat the global climate crisis.
+            </p>
+            <img src="" alt="" />
+            <div class="w-[100svh] grid grid-cols-4 pt-4">
+              <div class="flex gap-2">
+                <a href="">                  <img src="/icons/Reply.svg" alt="" /></a>
+                <p class="text-sand-10">
+                  52
+                </p>
+              </div>
+              <div class="flex gap-2">
+                <a href="">                  <img src="/icons/Retweet.svg" alt="" /></a>
+                <p class="text-sand-10">
+                  178
+                </p>
+              </div>
+              <div class="flex items-center gap-2">
+                <a href="">                  <img src="/icons/Buton.svg" alt="" /></a>
+                <p class="text-sand-10">
+                  85
+                </p>
+              </div>
+              <div>
+                <a href="">                  <img src="/icons/Share.svg" alt="" /></a>
+              </div>
             </div>
           </div>
-        </div>
+        </section>
+        <section class="border border-sand-8 flex p-5 gap-3 bg-black ">
+          <img
+            class="w-10 h-10 rounded-[50%]"
+            src="https://www.bcd-jeux.fr/34087-pdt_771/creart-new-york-city-format-carre-peinture-au-numero-ravensburger.jpg"
+            alt=""
+          />
+          <div>
+            <div class="flex gap-2">
+              <p class="font-bold text-[#D9D9D9]">
+                The New York Times
+              </p>
+              <p class="text-sand-10">
+                @nytimes
+              </p>
+            </div>
+            <p class="w-[80%] text-[#D9D9D9]">
+              Gardening boomed during the pandemic. Six Black writers share how it has helped them re-establish, and reimagine, a connection to cultivation and the land
+            </p>
+            <img
+              class="h-[250px] w-[500px] rounded-[30px]"
+              src="https://png.pngtree.com/thumb_back/fh260/background/20230408/pngtree-bright-warm-color-background-of-flowers-and-flowers-image_2160309.jpg"
+              alt=""
+            />
+            <div class="w-[100svh] grid grid-cols-4 pt-4">
+              <div class="flex gap-2">
+                <a href="">                  <img src="/icons/Reply.svg" alt="" /></a>
+                <p class="text-sand-10">
+                  52
+                </p>
+              </div>
+              <div class="flex gap-2">
+                <a href="">                  <img src="/icons/Retweet.svg" alt="" /></a>
+                <p class="text-sand-10">
+                  178
+                </p>
+              </div>
+              <div class="flex items-center gap-2">
+                <a href="">                  <img src="/icons/Buton.svg" alt="" /></a>
+                <p class="text-sand-10">
+                  85
+                </p>
+              </div>
+              <div>
+                <a href="">                  <img src="/icons/Share.svg" alt="" /></a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="border border-sand-8 flex p-5 gap-3 bg-black ">
+          <img
+            class="w-10 h-10 rounded-[50%]"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMI8zZdy2_bOTnzkUDUekVff-lYfC-HACqig&s"
+            alt=""
+          />
+          <div>
+            <div class="flex gap-2">
+              <p class="font-bold  text-[#D9D9D9]">
+                Twitter
+              </p>
+              <p class="text-sand-10">
+                @Twitter
+              </p>
+            </div>
+            <p class="text-[#D9D9D9]">
+              BIG NEWS lol jk still  Twitter
+            </p>
+            <img src="" alt="" />
+            <div class="w-[100svh] grid grid-cols-4 pt-4">
+              <div class="flex gap-2">
+                <a href="">                  <img src="/icons/Reply.svg" alt="" /></a>
+                <p class="text-sand-10">
+                  52
+                </p>
+              </div>
+              <div class="flex gap-2">
+                <a href="">                  <img src="/icons/Retweet.svg" alt="" /></a>
+                <p class="text-sand-10">
+                  178
+                </p>
+              </div>
+              <div class="flex items-center gap-2">
+                <a href="">                  <img src="/icons/Buton.svg" alt="" /></a>
+                <p class="text-sand-10">
+                  85
+                </p>
+              </div>
+              <div>
+                <a href="">                  <img src="/icons/Share.svg" alt="" /></a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="border border-sand-8 flex p-5 gap-3 bg-black ">
+          <img
+            class="w-10 h-10 rounded-[50%]"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMI8zZdy2_bOTnzkUDUekVff-lYfC-HACqig&s"
+            alt=""
+          />
+          <div>
+            <div class="flex gap-2">
+              <p class="font-bold  text-[#D9D9D9]">
+                Twitter
+              </p>
+              <p class="text-sand-10">
+                @Twitter
+              </p>
+            </div>
+            <p class="text-[#D9D9D9]">
+              Hello literally everyone
+            </p>
+            <img src="" alt="" />
+            <div class="w-[100svh] grid grid-cols-4 pt-4">
+              <div class="flex gap-2">
+                <a href="">                  <img src="/icons/Reply.svg" alt="" /></a>
+                <p class="text-sand-10">
+                  52
+                </p>
+              </div>
+              <div class="flex gap-2">
+                <a href="">                  <img src="/icons/Retweet.svg" alt="" /></a>
+                <p class="text-sand-10">
+                  178
+                </p>
+              </div>
+              <div class="flex items-center gap-2">
+                <a href="">                  <img src="/icons/Buton.svg" alt="" /></a>
+                <p class="text-sand-10">
+                  85
+                </p>
+              </div>
+              <div>
+                <a href="">                  <img src="/icons/Share.svg" alt="" /></a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="border border-sand-8 flex p-5 gap-3 bg-black ">
+          <img
+            class="w-10 h-10 rounded-[50%]"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMI8zZdy2_bOTnzkUDUekVff-lYfC-HACqig&s"
+            alt=""
+          />
+          <div>
+            <div class="flex gap-2">
+              <p class="font-bold  text-[#D9D9D9]">
+                Twitter
+              </p>
+              <p class="text-sand-10">
+                @Twitter
+              </p>
+            </div>
+            <p class="text-[#D9D9D9]">
+              Hello literally everyone
+            </p>
+            <img src="" alt="" />
+            <div class="w-[100svh] grid grid-cols-4 pt-4">
+              <div class="flex gap-2">
+                <a href="">                  <img src="/icons/Reply.svg" alt="" /></a>
+                <p class="text-sand-10">
+                  52
+                </p>
+              </div>
+              <div class="flex gap-2">
+                <a href="">                  <img src="/icons/Retweet.svg" alt="" /></a>
+                <p class="text-sand-10">
+                  178
+                </p>
+              </div>
+              <div class="flex items-center gap-2">
+                <a href="">                  <img src="/icons/Buton.svg" alt="" /></a>
+                <p class="text-sand-10">
+                  85
+                </p>
+              </div>
+              <div>
+                <a href="">                  <img src="/icons/Share.svg" alt="" /></a>
+              </div>
+            </div>
+          </div>
+        </section>
       </section>
-      <section class="border border-sand-8 flex p-5 gap-3 bg-black ">
-        <img class="w-10 h-10 rounded-[50%]" src="https://www.bcd-jeux.fr/34087-pdt_771/creart-new-york-city-format-carre-peinture-au-numero-ravensburger.jpg" alt="">
-        <div>
-          <div class="flex gap-2">
-            <p class="font-bold text-[#D9D9D9]">The New York Times</p>
-            <p class="text-sand-10">@nytimes</p>
-          </div>
-          <p class="w-[80%] text-[#D9D9D9]">
-Gardening boomed during the pandemic. Six Black writers share how it has helped them re-establish, and reimagine, a connection to cultivation and the land
-          </p>
-          <img class="h-[250px] w-[500px] rounded-[30px]" src="https://png.pngtree.com/thumb_back/fh260/background/20230408/pngtree-bright-warm-color-background-of-flowers-and-flowers-image_2160309.jpg" alt="">
-          <div class="w-[100svh] grid grid-cols-4 pt-4">
-            <div class="flex gap-2">
-              <a href=""><img src="/icons/Reply.svg" alt=""></a>
-              <p class="text-sand-10">52</p>
-            </div>
-            <div class="flex gap-2">
-              <a href=""><img src="/icons/Retweet.svg" alt=""></a>
-              <p class="text-sand-10">178</p>
-            </div>
-            <div class="flex items-center gap-2">
-              <a href=""><img src="/icons/Buton.svg" alt=""></a>
-              <p class="text-sand-10">85</p>
-            </div>
-            <div>
-              <a href=""><img src="/icons/Share.svg" alt=""></a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-      <section class="border border-sand-8 flex p-5 gap-3 bg-black ">
-        <img class="w-10 h-10 rounded-[50%]" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMI8zZdy2_bOTnzkUDUekVff-lYfC-HACqig&s" alt="">
-        <div>
-          <div class="flex gap-2">
-            <p class="font-bold  text-[#D9D9D9]">Twitter</p>
-            <p class="text-sand-10">@Twitter</p>
-          </div>
-          <p class="text-[#D9D9D9]">BIG NEWS lol jk still  Twitter</p>
-          <img src="" alt="">
-          <div class="w-[100svh] grid grid-cols-4 pt-4">
-            <div class="flex gap-2">
-              <a href=""><img src="/icons/Reply.svg" alt=""></a>
-              <p class="text-sand-10">52</p>
-            </div>
-            <div class="flex gap-2">
-              <a href=""><img src="/icons/Retweet.svg" alt=""></a>
-              <p class="text-sand-10">178</p>
-            </div>
-            <div class="flex items-center gap-2">
-              <a href=""><img src="/icons/Buton.svg" alt=""></a>
-              <p class="text-sand-10">85</p>
-            </div>
-            <div>
-              <a href=""><img src="/icons/Share.svg" alt=""></a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="border border-sand-8 flex p-5 gap-3 bg-black ">
-        <img class="w-10 h-10 rounded-[50%]" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMI8zZdy2_bOTnzkUDUekVff-lYfC-HACqig&s" alt="">
-        <div>
-          <div class="flex gap-2">
-            <p class="font-bold  text-[#D9D9D9]">Twitter</p>
-            <p class="text-sand-10">@Twitter</p>
-          </div>
-          <p class="text-[#D9D9D9]">Hello literally everyone</p>
-          <img src="" alt="">
-          <div class="w-[100svh] grid grid-cols-4 pt-4">
-            <div class="flex gap-2">
-              <a href=""><img src="/icons/Reply.svg" alt=""></a>
-              <p class="text-sand-10">52</p>
-            </div>
-            <div class="flex gap-2">
-              <a href=""><img src="/icons/Retweet.svg" alt=""></a>
-              <p class="text-sand-10">178</p>
-            </div>
-            <div class="flex items-center gap-2">
-              <a href=""><img src="/icons/Buton.svg" alt=""></a>
-              <p class="text-sand-10">85</p>
-            </div>
-            <div>
-              <a href=""><img src="/icons/Share.svg" alt=""></a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-      <section class="border border-sand-8 flex p-5 gap-3 bg-black ">
-        <img class="w-10 h-10 rounded-[50%]" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMI8zZdy2_bOTnzkUDUekVff-lYfC-HACqig&s" alt="">
-        <div>
-          <div class="flex gap-2">
-            <p class="font-bold  text-[#D9D9D9]">Twitter</p>
-            <p class="text-sand-10">@Twitter</p>
-          </div>
-          <p class="text-[#D9D9D9]">Hello literally everyone</p>
-          <img src="" alt="">
-          <div class="w-[100svh] grid grid-cols-4 pt-4">
-            <div class="flex gap-2">
-              <a href=""><img src="/icons/Reply.svg" alt=""></a>
-              <p class="text-sand-10">52</p>
-            </div>
-            <div class="flex gap-2">
-              <a href=""><img src="/icons/Retweet.svg" alt=""></a>
-              <p class="text-sand-10">178</p>
-            </div>
-            <div class="flex items-center gap-2">
-              <a href=""><img src="/icons/Buton.svg" alt=""></a>
-              <p class="text-sand-10">85</p>
-            </div>
-            <div>
-              <a href=""><img src="/icons/Share.svg" alt=""></a>
-            </div>
-          </div>
-        </div>
-      </section>
-    </section>  
-
-    @include('components/sectionSearch')
-
+      @include('components/sectionSearch')
+      @include('components/newTweet')
+    </div>
   </body>
 </html>
