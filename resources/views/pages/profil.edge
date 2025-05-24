@@ -69,10 +69,10 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('dumper')
   </head>
-  <body id="body">
-    <div id="allSection" class="flex bg-black">
+  <body id="body" class="h-full bg-black">
+    <div id="allSection" class="flex h-full bg-black">
       @include('components/navbar')
-      <section class="bg-black w-[50%]">
+      <section class="bg-black lg:w-[50%] h-full md:w-[90%] w-[85%]">
 
         <div class="flex items-center gap-3 px-6 py-4 border">
           <a href="">            <img class="w-11 h-11 hover:bg-sand-11 p-2 rounded-[50%] rounded-[50%]" src="/icons/More.svg" alt="" /></a>

@@ -69,11 +69,11 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('dumper')
   </head>
-  <body id="body">
-    <div id="allSection" class="flex bg-black">
+  <body class="bg-black h-full" id="body">
+    <div id="allSection" class="flex h-full bg-black">
       @include('components/navbar')
-      <section class="bg-black w-[50%]">
-        <div class="flex justify-between border border-sand-8  p-5">
+      <section class="bg-black lg:w-[50%] h-full md:w-[90%] w-[85%]">
+        <div class="flex justify-between border border-sand-8  p-3">
           <P class="font-bold text-[#D9D9D9]">
             Home
           </P>
@@ -92,7 +92,7 @@
               placeholder="What's happening ?"
             />
           </div>
-          <div class="flex justify-between px-5">
+          <div class="flex justify-between px-3">
             <div class="flex p-5 gap-2">
               <a
                 class="text-[#D9D9D9] hover:bg-sand-11 rounded-[30px] w-10 h-10 flex items-center justify-center font-bold"
@@ -123,13 +123,13 @@
               </p></a>
           </div>
         </form>
-        <section class="border border-sand-8 flex p-5 gap-3 bg-black ">
+        <section class="border border-sand-8 flex p-3 gap-3 bg-black w-full">
           <img
             class="w-10 h-10 rounded-[50%]"
             src="https://berqwp-cdn.sfo3.cdn.digitaloceanspaces.com/cache/belleandchic.com/wp-content/uploads/2022/01/coiffure-visage-carre-3-jpg.webp"
             alt=""
           />
-          <div>
+          <div class="flex flex-col gap-3">
             <div class="flex gap-2">
               <p class="font-bold  text-[#D9D9D9]">
                 CNN
@@ -138,11 +138,11 @@
                 @CNN
               </p>
             </div>
-            <p class="w-[80%] text-[#D9D9D9]">
+            <p class="text-sm lg:w-[85%] md:w-[600px] w-[80%] text-[#D9D9D9]">
               President Joe Biden touted a new agreement reached with the European Union to ease Trump-era tariffs on aluminum and steel as a "major breakthrough" that would serve to both strengthen the US steel industry and combat the global climate crisis.
             </p>
             <img src="" alt="" />
-            <div class="w-[100svh] grid grid-cols-4 pt-4">
+            <div class="md:w-[100%] w-[350px] grid grid-cols-4 pt-4">
               <div class="flex gap-2">
                 <a href="">                  <img src="/icons/Reply.svg" alt="" /></a>
                 <p class="text-sand-10">
@@ -167,14 +167,14 @@
             </div>
           </div>
         </section>
-        <section class="border border-sand-8 flex p-5 gap-3 bg-black ">
+        <section class="border border-sand-8 flex pr-[300px]  p-3  gap-3 bg-black ">
           <img
             class="w-10 h-10 rounded-[50%]"
             src="https://www.bcd-jeux.fr/34087-pdt_771/creart-new-york-city-format-carre-peinture-au-numero-ravensburger.jpg"
             alt=""
           />
-          <div>
-            <div class="flex gap-2">
+          <div class="flex flex-col gap-3 ">
+            <div class="flex gap-2 ">
               <p class="font-bold text-[#D9D9D9]">
                 The New York Times
               </p>
@@ -182,15 +182,15 @@
                 @nytimes
               </p>
             </div>
-            <p class="w-[80%] text-[#D9D9D9]">
+            <p class="md:w-[75%] lg:w-[75%] text-[#D9D9D9] w-[80%]">
               Gardening boomed during the pandemic. Six Black writers share how it has helped them re-establish, and reimagine, a connection to cultivation and the land
             </p>
             <img
-              class="h-[250px] w-[500px] rounded-[30px]"
+              class="h-[135px] w-[270px] md:h-[250px] md:w-[500px] rounded-[30px]"
               src="https://png.pngtree.com/thumb_back/fh260/background/20230408/pngtree-bright-warm-color-background-of-flowers-and-flowers-image_2160309.jpg"
               alt=""
             />
-            <div class="w-[100svh] grid grid-cols-4 pt-4">
+            <div class="md:w-[700px] w-[350px] grid grid-cols-4 pt-4">
               <div class="flex gap-2">
                 <a href="">                  <img src="/icons/Reply.svg" alt="" /></a>
                 <p class="text-sand-10">
@@ -216,13 +216,13 @@
           </div>
         </section>
 
-        <section class="border border-sand-8 flex p-5 gap-3 bg-black ">
+        <section class="border border-sand-8 flex p-3 gap-3 bg-black ">
           <img
             class="w-10 h-10 rounded-[50%]"
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMI8zZdy2_bOTnzkUDUekVff-lYfC-HACqig&s"
             alt=""
           />
-          <div>
+          <div class="flex flex-col gap-3 lg:w-[100%]">
             <div class="flex gap-2">
               <p class="font-bold  text-[#D9D9D9]">
                 Twitter
@@ -235,7 +235,7 @@
               BIG NEWS lol jk still  Twitter
             </p>
             <img src="" alt="" />
-            <div class="w-[100svh] grid grid-cols-4 pt-4">
+            <div class="md:w-[100%] w-[350px]  grid grid-cols-4 pt-4">
               <div class="flex gap-2">
                 <a href="">                  <img src="/icons/Reply.svg" alt="" /></a>
                 <p class="text-sand-10">
@@ -261,13 +261,13 @@
           </div>
         </section>
 
-        <section class="border border-sand-8 flex p-5 gap-3 bg-black ">
+        <section class="border border-sand-8 flex p-3 gap-3 bg-black ">
           <img
             class="w-10 h-10 rounded-[50%]"
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMI8zZdy2_bOTnzkUDUekVff-lYfC-HACqig&s"
             alt=""
           />
-          <div>
+          <div class="flex flex-col gap-3 lg:w-[100%]">
             <div class="flex gap-2">
               <p class="font-bold  text-[#D9D9D9]">
                 Twitter
@@ -280,7 +280,7 @@
               Hello literally everyone
             </p>
             <img src="" alt="" />
-            <div class="w-[100svh] grid grid-cols-4 pt-4">
+            <div class="md:w-[100%] w-[350px] grid grid-cols-4 pt-4">
               <div class="flex gap-2">
                 <a href="">                  <img src="/icons/Reply.svg" alt="" /></a>
                 <p class="text-sand-10">
@@ -306,13 +306,13 @@
           </div>
         </section>
 
-        <section class="border border-sand-8 flex p-5 gap-3 bg-black ">
+        <section class="border border-sand-8 flex p-3 gap-3 bg-black ">
           <img
             class="w-10 h-10 rounded-[50%]"
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMI8zZdy2_bOTnzkUDUekVff-lYfC-HACqig&s"
             alt=""
           />
-          <div>
+          <div class="flex flex-col gap-3 lg:w-[100%]">
             <div class="flex gap-2">
               <p class="font-bold  text-[#D9D9D9]">
                 Twitter
@@ -325,7 +325,7 @@
               Hello literally everyone
             </p>
             <img src="" alt="" />
-            <div class="w-[100svh] grid grid-cols-4 pt-4">
+            <div class="md:w-[100%] w-[350px]  grid grid-cols-4 pt-4">
               <div class="flex gap-2">
                 <a href="">                  <img src="/icons/Reply.svg" alt="" /></a>
                 <p class="text-sand-10">
