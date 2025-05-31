@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>
+      login
+    </title>
+    <link rel="preconnect" href="https://fonts.bunny.net" />
+    <link
+      href="https://fonts.bunny.net/css?family=instrument-sans:400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --sand-1: #fdfdfc;
+        --sand-2: #f9f9f8;
+        --sand-3: #f1f0ef;
+        --sand-4: #e9e8e6;
+        --sand-5: #e2e1de;
+        --sand-6: #dad9d6;
+        --sand-7: #cfceca;
+        --sand-8: #bcbbb5;
+        --sand-9: #8d8d86;
+        --sand-10: #82827c;
+        --sand-11: #63635e;
+        --sand-12: #21201c;
+      }
+    </style>
+
+    <script src="https://cdn.tailwindcss.com">
+      
+    </script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: [ "Instrument Sans", "sans-serif" ]
+            },
+            colors: {
+              primary: {
+                DEFAULT: "#5A45FF",
+                lighter: "#a599ff"
+              },
+              sand: {
+                1: "var(--sand-1)",
+                2: "var(--sand-2)",
+                3: "var(--sand-3)",
+                4: "var(--sand-4)",
+                5: "var(--sand-5)",
+                6: "var(--sand-6)",
+                7: "var(--sand-7)",
+                8: "var(--sand-8)",
+                9: "var(--sand-9)",
+                10: "var(--sand-10)",
+                11: "var(--sand-11)",
+                12: "var(--sand-12)"
+              }
+            }
+          }
+        }
+      };
+    </script>
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @stack('dumper')
+  </head>
+  <body class="text-white bg-black flex flex-col items-center justify-center px-10 w-full">
+
+    <div class="text-center flex flex-col items-center pt-[50px]">
+      <img src="/icons/Twitter.svg" class="w-[60px] w-[60px]" alt="" />
+      <p class="font-bold text-[24px] my-5">
+        Créer un compte
+      </p>
+      <div class="flex flex-col gap-3 w-[300px]">
+        <a class="bg-white text-black py-2 px-[50px] rounded-3xl" href="">S'incrire avec Google</a>
+        <a class="bg-white text-black py-2 px-[50px] rounded-3xl" href="">S'incrire avec Apple</a>
+        <div class="">
+          <p class="z-10 text-[#4B4E52]">OU</p>
+        </div>
+        <a class="bg-blue-400 text-white py-2 px-[50px] rounded-3xl" href="">Créer un compte</a>
+        <p class="text-[#4B4E52] text-[14px]">
+          En vous inscrivant, vous acceptez les Conditions d'utilisation et la Politique de confidentialité, notamment l'Utilisation des cookies.
+        </p>
+        <div class="mb-6">
+          <p class="font-bold text-xl mt-8 mb-6">
+            Vous avez déjà un compte ?
+          </p>
+          <a class="bg-white text-blue-400 py-3 px-[100px] rounded-3xl" href="">Se connecter</a>
+        </div>
+      </div>
+    </div>
+    <footer class="mt-4 flex gap-3 w-full text-center">
+     <div>
+        <a href="" class="text-[#4B4E52] text-[12px] pr-1 border-r hover:underline">À propos</a>
+        <a href="" class="text-[#4B4E52] text-[12px] pr-1 border-r hover:underline">Télécharger l'application Twitter</a>
+        <a href="" class="text-[#4B4E52] text-[12px] pr-1 border-r hover:underline">Télécharger l'application Grok</a>
+        <a href="" class="text-[#4B4E52] text-[12px] pr-1 border-r hover:underline">Carrières</a>
+        <a href="" class="text-[#4B4E52] text-[12px] pr-1 border-r hover:underline">Conditions d’utilisation</a>
+        <a href="" class="text-[#4B4E52] text-[12px] pr-1 border-r hover:underline">Politique de Confidentialité</a>
+        <a href="" class="text-[#4B4E52] text-[12px] pr-1 border-r hover:underline">Politique relative aux cookies</a>
+        <a href="" class="text-[#4B4E52] text-[12px] pr-1 border-r hover:underline">Développeurs</a>
+        <a href="" class="text-[#4B4E52] text-[12px] pr-1 border-r hover:underline">Publicité</a>
+        <a href="" class="text-[#4B4E52] text-[12px] pr-1 border-r hover:underline">Paramètres</a>
+        <a href="" class="text-[#4B4E52] text-[12px] ">© 2025 Twitter Corp.</a>
+     </div>
+    </footer>
+  </body>
+</html>
