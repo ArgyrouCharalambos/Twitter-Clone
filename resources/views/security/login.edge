@@ -126,8 +126,7 @@
     container.className = "bg-sand-12";
     const sectionForm = document.createElement("form");
     sectionForm.method = "POST";
-    sectionForm.action = "/newUser";
-    
+    sectionForm.action = "/signin";    
     sectionForm.className = "bg-black lg:top-[10%] md:top-[10%] top-[1%] md:left-[16%] lg:left-[28.5%] px-[10px] pt-[5px] pb-[15px] absolute md:w-[520px] lg:w-[43%] h-[100%] w-[100%] md:h-[550px] rounded-[20px] flex gap-0";
     container.appendChild(sectionForm);
     const btnRetour = document.createElement("a");
@@ -159,21 +158,25 @@
 
     const inputNom = document.createElement("input");
     inputNom.placeholder = 'Nom';
+    inputNom.name = 'nom';
     inputNom.className = 'bg-black px-2 py-3 w-[90%] rounded-[4px] border-[0.5px] border-[#4B4E52] mb-4 hover:border-blue-400';
     section2.appendChild(inputNom);
 
     const inputPrenom = document.createElement("input");
     inputPrenom.placeholder = 'Prenom';
+    inputPrenom.name = 'prenom';
     inputPrenom.className = 'bg-black px-2 py-3 w-[90%] rounded-[4px] border-[0.5px] border-[#4B4E52] mb-4 hover:border-blue-400';
     section2.appendChild(inputPrenom);
 
     const inputEmail = document.createElement("input");
     inputEmail.placeholder = 'Email';
+    inputEmail.name = 'email';
     inputEmail.className = 'bg-black px-2 py-3 w-[90%] rounded-[4px] border-[0.5px] border-[#4B4E52] mb-4 hover:border-blue-400';
     section2.appendChild(inputEmail);
 
     const inputPassword = document.createElement("input");
     inputPassword.placeholder = 'Mot de passe';
+    inputPassword.name = 'password';
     inputPassword.className = 'bg-black px-2 py-3 rounded-[4px] border-[0.5px] border-[#4B4E52] mb-4 w-[90%] hover:border-blue-400';
 
     section2.appendChild(inputPassword);
@@ -181,9 +184,14 @@
 
     const btnCreateUser = document.createElement("button");
     btnCreateUser.textContent = 'Envoie';
+    btnCreateUser.type = "submit";
     btnCreateUser.className = 'bg-white hover:bg-[#D7DBDC] rounded-3xl py-2 px-5 font-bold text-black w-[90%] mt-6';
 
     section2.appendChild(btnCreateUser);
+
+    const inputCSRF = document.createElement("p");
+    inputCSRF.innerHTML = `{{ csrfField() }}`;
+    section2.appendChild(inputCSRF);
 
     
 
@@ -194,8 +202,8 @@
     container2.style.opacity = "30%";
     container.className = "bg-sand-12";
     const sectionForm = document.createElement("form");
-    sectionForm.method = "";
-    sectionForm.action = "";
+    sectionForm.method = "GET";
+    sectionForm.action = "/connexion";
     
     sectionForm.className = "bg-black lg:top-[10%] md:top-[10%] top-[1%] md:left-[16%] lg:left-[28.5%] px-[10px] pt-[5px] pb-[15px] absolute md:w-[520px] lg:w-[43%] h-[100%] w-[100%] md:h-[400px] rounded-[20px] flex gap-0";
     container.appendChild(sectionForm);
@@ -228,11 +236,13 @@
     
     const inputEmail = document.createElement("input");
     inputEmail.placeholder = 'Email';
+    inputEmail.name = 'email';
     inputEmail.className = 'bg-black px-2 py-3 w-[90%] rounded-[4px] border-[0.5px] border-[#4B4E52] mb-4 hover:border-blue-400';
     section2.appendChild(inputEmail);
 
     const inputPassword = document.createElement("input");
     inputPassword.placeholder = 'Mot de passe';
+    inputPassword.name = 'password';
     inputPassword.className = 'bg-black px-2 py-3 rounded-[4px] border-[0.5px] border-[#4B4E52] mb-4 w-[90%] hover:border-blue-400';
 
     section2.appendChild(inputPassword);
@@ -240,9 +250,14 @@
 
     const btnCreateUser = document.createElement("button");
     btnCreateUser.textContent = 'Envoie';
+    btnCreateUser.type = "submit";
     btnCreateUser.className = 'bg-white hover:bg-[#D7DBDC] rounded-3xl py-2 px-5 font-bold text-black w-[90%] mt-6';
 
     section2.appendChild(btnCreateUser);
+
+    const inputCSRF = document.createElement("p");
+    inputCSRF.innerHTML = `{{ csrfField() }}`;
+    section2.appendChild(inputCSRF);
             
         }
 
