@@ -9,20 +9,28 @@ export default class PublicationsController {
 
     async home({view ,auth}:HttpContext){
 
-        return view.render('pages/home',{user:auth.user})
+        const publication = await Publication.all()
+        
+        return view.render('pages/home',{user:auth.user ,publication})
     };
 
     async profil({view ,auth}:HttpContext){
 
-        return view.render('pages/profil',{user:auth.user})
+        const publication = await Publication.findManyBy("id_utilisateur", auth.user?.id);
+        const count = await Publication.query().where("id_utilisateur", Number(auth.user?.id)).count('* as total');
+        const total = count[0].$extras.total
+
+        // const media = await Media.findByOrFail("id_publication", );
+
+        return view.render('pages/profil',{user:auth.user ,publication,count:[total]})
     };
     
-    async create({request ,auth}:HttpContext){
+    async create({request ,auth,response}:HttpContext){
         const texteTweet:string = request.input("texteTweet");
         const image = request.file('image');
 
         if(image){
-            await image.move(app.publicPath('storage/uploads'),{
+            await image.move(app.makePath('storage/uploads'),{
                 name: `${cuid()}.${image.extname}`
               });
         }
@@ -36,6 +44,7 @@ export default class PublicationsController {
             photo:image?.fileName,
             idPublication:pub.id
         })
+        response.redirect('/')
 
     }
 }
