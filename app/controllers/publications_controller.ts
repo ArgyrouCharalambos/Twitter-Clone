@@ -6,20 +6,36 @@ import { cuid } from '@adonisjs/core/helpers'
 
 
 export default class PublicationsController {
+
+    async home({view ,auth}:HttpContext){
+
+        return view.render('pages/home',{user:auth.user})
+    };
+
+    async profil({view ,auth}:HttpContext){
+
+        return view.render('pages/profil',{user:auth.user})
+    };
+    
     async create({request ,auth}:HttpContext){
         const texteTweet:string = request.input("texteTweet");
         const image = request.file('image');
-        const User = Publication.findByOrFail("id_utilisateur", auth.user?.id);
-        const tweet = Media.findByOrFail("id_publication", (await User).id);
-        
+
         if(image){
             await image.move(app.publicPath('storage/uploads'),{
                 name: `${cuid()}.${image.extname}`
               });
-            (await tweet).photo = String(image?.fileName);
         }
-       
-        (await User).texte = texteTweet;
-        (await tweet).save();
+
+        const pub = await Publication.create({
+            texte:texteTweet,
+            idUtilisateur: auth.user?.id
+        })
+
+        await Media.create({
+            photo:image?.fileName,
+            idPublication:pub.id
+        })
+
     }
 }
