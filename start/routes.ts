@@ -9,9 +9,10 @@
 
 import PublicationsController from '#controllers/publications_controller'
 import router from '@adonisjs/core/services/router'
+import { middleware } from './kernel.js'
 
-
-router.on('/').render('pages/home')
 router.on('/login').render('security/login')
-router.on('/profil').render('pages/profil')
-router.post('/create' , [PublicationsController , 'create'])
+
+router.on('/').render('pages/home').use(middleware.auth()) 
+router.on('/profil').render('pages/profil').use(middleware.auth()) 
+router.post('/create' , [PublicationsController , 'create']).use(middleware.auth()) 
