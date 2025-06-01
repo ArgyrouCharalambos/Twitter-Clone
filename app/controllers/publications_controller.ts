@@ -3,6 +3,7 @@ import Media from '#models/media'
 import Publication from '#models/publication'
 import app from '@adonisjs/core/services/app'
 import { cuid } from '@adonisjs/core/helpers'
+import User from '#models/user'
 
 
 export default class PublicationsController {
@@ -10,11 +11,14 @@ export default class PublicationsController {
     async home({view ,auth}:HttpContext){
 
         const publication = await Publication.all()
+        const userAll = await User.all()
         
-        return view.render('pages/home',{user:auth.user ,publication})
+        return view.render('pages/home',{user:auth.user ,publication,userAll})
     };
 
     async profil({view ,auth}:HttpContext){
+        const userAll = await User.all()
+        console.log(userAll)
 
         const publication = await Publication.findManyBy("id_utilisateur", auth.user?.id);
         const count = await Publication.query().where("id_utilisateur", Number(auth.user?.id)).count('* as total');
@@ -22,7 +26,7 @@ export default class PublicationsController {
 
         // const media = await Media.findByOrFail("id_publication", );
 
-        return view.render('pages/profil',{user:auth.user ,publication,count:[total]})
+        return view.render('pages/profil',{user:auth.user ,publication,count:[total],userAll})
     };
     
     async create({request ,auth,response}:HttpContext){
