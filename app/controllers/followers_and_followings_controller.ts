@@ -12,10 +12,7 @@ export default class FollowersAndFollowingsController {
       .where('id_utilisateur', userId)
       .andWhere('id_utilisateur_abonnement', paramsId).first();
 
-    let existeOuPas = false;
-
     if (verification) {
-        existeOuPas = true;
       await verification.delete();
 
       const verification2 = await Follower.query()

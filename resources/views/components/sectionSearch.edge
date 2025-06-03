@@ -96,10 +96,10 @@
       </div>
       <form action="/followers/{{userAlls.id}}" method="POST">
         {{ csrfField() }}
-        @if(existeOuPas === true )
-        <button type="submit" class="bg-white h-9 py-1 px-2 text-black hover:bg-[#D7DBDC] rounded-[30px]">Follow</button>
+        @if(tableauAbonnement.includes(userAlls.id))
+        <button type="submit" class="bg-sand-12 border-[0.5px] rounded-3xl h-9 py-1 px-2 text-white hover:text-red-500 hover:border-red-500 hover:bg-[#200A0C] font-bold rounded-[30px]">Unfollow</button>
         @else
-        <button type="submit" class="bg-white h-9 py-1 px-2 text-black hover:bg-[#D7DBDC] rounded-[30px]">Unfollow</button>
+        <button type="submit" class="bg-white h-9 py-1 px-2 text-black hover:bg-[#D7DBDC] font-bold rounded-[30px]">Follow</button>
         @endif
     </form>
     </div>
@@ -107,3 +107,14 @@
    
   </div>
 </div>
+<script>
+  function changeButton(btn) {
+    if (btn.innerText === "Follow") {
+      btn.innerText = "Unfollow"
+      btn.style.backgroundColor = "red"
+    } else {
+      btn.innerText = "Follow"
+      btn.style.backgroundColor = "green"
+    }
+  }
+</script>
