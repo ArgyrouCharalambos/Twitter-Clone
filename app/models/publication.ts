@@ -9,7 +9,10 @@ export default class Publication extends BaseModel {
   declare texte:string
 
   @column()
-  declare idUtilisateur:number
+  declare idUtilisateur:number 
+
+  @column()
+  declare media:string
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

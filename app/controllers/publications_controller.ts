@@ -1,5 +1,4 @@
 import type { HttpContext } from '@adonisjs/core/http'
-import Media from '#models/media'
 import Publication from '#models/publication'
 import app from '@adonisjs/core/services/app'
 import { cuid } from '@adonisjs/core/helpers'
@@ -12,7 +11,6 @@ export default class PublicationsController {
 
         const publication = await Publication.all()
         const userAll = await User.all()
-        
         return view.render('pages/home',{user:auth.user ,publication,userAll})
     };
 
@@ -24,8 +22,6 @@ export default class PublicationsController {
         const count = await Publication.query().where("id_utilisateur", Number(auth.user?.id)).count('* as total');
         const total = count[0].$extras.total
 
-        // const media = await Media.findByOrFail("id_publication", );
-
         return view.render('pages/profil',{user:auth.user ,publication,count:[total],userAll})
     };
     
@@ -34,21 +30,18 @@ export default class PublicationsController {
         const image = request.file('image');
 
         if(image){
-            await image.move(app.makePath('storage/uploads'),{
+            await image.move(app.makePath('public/uploads'),{
                 name: `${cuid()}.${image.extname}`
               });
-        }
+        };
 
-        const pub = await Publication.create({
+        await Publication.create({
             texte:texteTweet,
-            idUtilisateur: auth.user?.id
-        })
+            idUtilisateur: auth.user?.id,
+            media:image?.fileName
+        });
 
-        await Media.create({
-            photo:image?.fileName,
-            idPublication:pub.id
-        })
-        response.redirect('/')
+        response.redirect('/');
 
     }
 }
