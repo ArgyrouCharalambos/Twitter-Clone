@@ -96,7 +96,7 @@
                 src="https://i5.walmartimages.com/asr/63a7df2a-a706-479e-a388-5dd184fb21d8.30c3b97393fa9b8f7d0e164abc324f24.jpeg"
                 alt=""
               />
-              <a class="hover:bg-[#181919] relative lg:top-9 md:top-8 top-5 font-bold border px-3 py-1 rounded-[30px]" href="">Edit profile</a>
+              <button type="button" id="btnEdit" class="hover:bg-[#181919] relative lg:top-9 md:top-8 top-5 font-bold border px-3 py-1 rounded-[30px]" >Edit profile</button>
             </div>
           </div>
           <div class="p-4 flex flex-col gap-1">
@@ -150,8 +150,10 @@
                 <p class="text-[#D9D9D9]">
                   {{publications.texte}}
                 </p>
-                <img src="uploads/{{publications.media}}" alt="" />
-                <video src="uploads/{{publications.media}}" autoplay loop muted alt="" ></video>
+                <img src="uploads/{{publications.media}}"  class="rounded-xl" alt="" />
+                @if(publications.media)
+                <video src="uploads/{{publications.media}}"  class="rounded-xl" autoplay loop  alt="" ></video>
+                @endif
 
                 <div class="md:w-[100%] w-[350px]  grid grid-cols-4 pt-4">
                   <div class="flex gap-2">
@@ -186,36 +188,48 @@
           <p class="text-xl font-bold mb-6">
             Who to follow
           </p>
-          <div class="flex gap-4 mb-5">
+          @each(userAlls in userAll)
+          <div class="flex gap-4 mb-5 w-full">
             <img
               class="w-10 h-10 rounded-[50%]"
               src="https://www.bcd-jeux.fr/34087-pdt_771/creart-new-york-city-format-carre-peinture-au-numero-ravensburger.jpg"
               alt=""
             />
-            <div class="flex flex-col gap-3">
-              <div class="flex justify-between items-center">
+            <div class="flex flex-col gap-3 w-full">
+              <div class="flex justify-between items-center w-full">
                 <div>
                   <p>
-                    CNN
+                    {{userAlls.nom}}
                   </p>
                   <p class="text-sand-9 text-[13px]">
-                    @CNN
+                    {{userAlls.prenom}}
+                    
                   </p>
                 </div>
-                <a class="bg-white px-3 py-1 hover:bg-[#D7DBDC] rounded-[30px] text-black" href="">Follow</a>
+                <form action="/followers/{{userAlls.id}}" method="POST">
+                  {{ csrfField() }}
+                  @if(tableauAbonnement.includes(userAlls.id))
+                  <button type="submit" class="bg-black border-[0.5px] rounded-3xl h-9 py-1 px-2 text-white hover:text-red-500 hover:border-red-500 hover:bg-[#200A0C] font-bold rounded-[30px]">Unfollow</button>
+                  @else
+                  <button type="submit" class="bg-white h-9 py-1 px-2 text-black hover:bg-[#D7DBDC] font-bold rounded-[30px]">Follow</button>
+                  @endif
+              </form>
               </div>
+              @if(userAlls.biographie)
               <p>
-                Le plus grand site d'infos en RD CONGO. Site d’Infos générales : Politique, Sécuritaire, Économique, Sociale, Culturelle et Sportive. Infos fiables.
+                {{userAlls.biographie}}
               </p>
+              @endif
             </div>
           </div>
+          @end
           <div class="flex gap-4 mb-5">
             <img
               class="w-10 h-10 rounded-[50%]"
               src="https://www.bcd-jeux.fr/34087-pdt_771/creart-new-york-city-format-carre-peinture-au-numero-ravensburger.jpg"
               alt=""
             />
-            <div class="flex flex-col gap-3">
+            <div class="flex flex-col g">
               <div class="flex justify-between items-center">
                 <div>
                   <p>
@@ -239,5 +253,104 @@
         @include('components/sectionSearch')
       </div>
       @include('components/newTweet')
+      <script>
+
+ const btnEdit = document.querySelector(`#btnEdit`)
+ btnEdit.addEventListener("click", ()=>{
+  
+  const container = document.querySelector(`body`);
+    const container2 = document.querySelector(`#allSection`);
+    container2.style.opacity = "30%";
+    container.className = "bg-sand-12";
+    const sectionForm = document.createElement("form");
+    sectionForm.method = "POST";
+    sectionForm.action = "/signin";    
+    sectionForm.className = "bg-black overflow-y-auto lg:top-[10%] md:top-[10%] top-[1%] md:left-[16%] lg:left-[28.5%] px-[3px] pt-[5px] pb-[15px] absolute md:w-[520px] lg:w-[43%] h-[100%] w-[100%] md:h-[550px] rounded-[20px] flex flex-col gap-0";
+    container.appendChild(sectionForm);
+
+    const head = document.createElement("div");
+    head.className = "flex items-start mb-4   px-2 md:w-[520px] lg:w-[43%] w-[100%]"
+    sectionForm.appendChild(head);
+
+    const sectionHeadDescription = document.createElement("div");
+    sectionHeadDescription.className = "flex gap-5 items-center"
+    head.appendChild(sectionHeadDescription);
+
+    const btnRetour = document.createElement("a");
+    btnRetour.href = "";
+    btnRetour.className = "text-white lg:text-[25px] hover:bg-sand-11 rounded-[30px] py-[3px] h-[33px] lg:pt-0  lg:h-[38px] px-[10px] "
+    btnRetour.style.textDecoration = 'none';
+    btnRetour.textContent = "x";
+    sectionHeadDescription.appendChild(btnRetour);
+
+   
+
+    const Titre = document.createElement("p");
+    Titre.className = "text-white text-bold font- lg:w-[400px] text-xl";
+    Titre.textContent = "Edit Profile";
+    sectionHeadDescription.appendChild(Titre);
+
+    const btnSave = document.createElement("button");
+    btnSave.className = "text-black w- h-[30px] bg-white px-4 mt-2 py-0 rounded-3xl";
+    btnSave.textContent = "Save";
+    head.appendChild(btnSave);
+
+
+    const sectionMain = document.createElement("div");
+    sectionMain.className = "relative"
+    sectionForm.appendChild(sectionMain);
+
+    const photoCouverture = document.createElement("img");
+    photoCouverture.className = "w-full lg:h-[200px]";
+    photoCouverture.src = "/icons/artificial-intelligence-5291510_1280.jpg"
+    sectionMain.appendChild(photoCouverture);
+
+    const photoProfil = document.createElement("img");
+    photoProfil.className = "absolute lg:top-[160px] lg:left-[20px] border-4 border-black rounded-[50%] w-[120px] h-[120px]"
+    photoProfil.src = "https://i5.walmartimages.com/asr/63a7df2a-a706-479e-a388-5dd184fb21d8.30c3b97393fa9b8f7d0e164abc324f24.jpeg"
+
+    sectionMain.appendChild(photoProfil);
+
+
+    const inputName = document.createElement("input");
+    inputName.className = "rounded-sm px-4 ml-3 border-[#333639] lg:w-[520px] py-3 bg-black lg:mt-[90px] border-[0.5px] text-white";
+    inputName.placeholder = "Nom";
+    sectionForm.appendChild(inputName);
+
+    const inputPrenom = document.createElement("input");
+    inputPrenom.className = "rounded-sm px-4 ml-3 border-[#333639] lg:w-[520px] py-3 bg-black lg:mt-[20px] border-[0.5px] text-white";
+    inputPrenom.placeholder = "Prenom";
+    sectionForm.appendChild(inputPrenom);
+
+    const inputBiographie = document.createElement("input");
+    inputBiographie.className = "rounded-sm px-4 ml-3 border-[#333639] lg:w-[520px] py-3 bg-black lg:mt-[20px] border-[0.5px] text-white";
+    inputBiographie.placeholder = "Biographie";
+    sectionForm.appendChild(inputBiographie);
+
+
+    const inputLocalisation = document.createElement("input");
+    inputLocalisation.className = "rounded-sm px-4 ml-3 border-[#333639] lg:w-[520px] py-3 bg-black lg:mt-[20px] border-[0.5px] text-white";
+    inputLocalisation.placeholder = "Localisation";
+    sectionForm.appendChild(inputLocalisation);
+
+    const inputWebSite = document.createElement("input");
+    inputWebSite.className = "rounded-sm px-4 ml-3 border-[#333639] lg:w-[520px] py-3 bg-black lg:mt-[20px] border-[0.5px] text-white";
+    inputWebSite.placeholder = "WebSite";
+    sectionForm.appendChild(inputWebSite);
+
+
+
+
+    
+
+    const inputCSRF = document.createElement("p");
+    inputCSRF.innerHTML = `{{ csrfField() }}`;
+    section2.appendChild(inputCSRF);
+
+    
+
+ })
+  
+      </script>
     </body>
   </html>
