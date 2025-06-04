@@ -1,5 +1,8 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@adonisjs/lucid/orm'
+import { BaseModel, column, hasOne } from '@adonisjs/lucid/orm'
+import User from '#models/user'
+import * as relations from '@adonisjs/lucid/types/relations'
+
 
 export default class Publication extends BaseModel {
   @column({ isPrimary: true })
@@ -13,6 +16,13 @@ export default class Publication extends BaseModel {
 
   @column()
   declare media:string
+
+   @hasOne(() => User,{
+      foreignKey: 'id',
+      localKey: 'idUtilisateur'
+    })
+    declare user: relations.HasOne<typeof User>
+  
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

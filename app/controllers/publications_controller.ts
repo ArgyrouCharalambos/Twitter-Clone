@@ -9,7 +9,8 @@ import Following from '#models/following'
 export default class PublicationsController {
 
     async home({view ,auth}:HttpContext){
-        const publication = await Publication.all()
+        const userPublication = await Publication.query().preload('user')
+
         const userAll = await User.query().whereNot('id',Number(auth.user?.id));
 
 
@@ -22,7 +23,7 @@ export default class PublicationsController {
         }
 
 
-        return view.render('pages/home',{user:auth.user ,publication,userAll,tableauAbonnement})
+        return view.render('pages/home',{user:auth.user ,userPublication,userAll,tableauAbonnement})
     };
 
     async profil({view ,auth}:HttpContext){
