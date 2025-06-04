@@ -2,7 +2,7 @@ import User from '#models/user';
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class UsersController {
-    async create({request ,response}:HttpContext){
+    async create({request ,response,auth}:HttpContext){
         let data = request.only(["nom","prenom","email","password"]);
 
         await User.create({
@@ -13,7 +13,11 @@ export default class UsersController {
 
         })
 
-        response.redirect('/login')
+        const user = await User.verifyCredentials(data.email, data.password)
+
+        await auth.use('web').login(user)
+    
+        response.redirect('/')
 
     }
     async connexion({request ,auth , response}:HttpContext){
