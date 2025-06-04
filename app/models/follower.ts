@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@adonisjs/lucid/orm'
+import { BaseModel, column,  } from '@adonisjs/lucid/orm'
 
 export default class Follower extends BaseModel {
   @column({ isPrimary: true })
@@ -7,7 +7,8 @@ export default class Follower extends BaseModel {
 
   @column()
   declare idUtilisateur: number
-
+ // user 
+ 
   @column()
   declare idUtilisateurAbonne: number
 

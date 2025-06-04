@@ -1,5 +1,5 @@
-import Follower from '#models/follower'
 import Following from '#models/following'
+import User from '#models/user';
 import { HttpContext } from '@adonisjs/core/http'
 
 export default class FollowersAndFollowingsController {
@@ -15,13 +15,13 @@ export default class FollowersAndFollowingsController {
     if (verification) {
       await verification.delete();
 
-      const verification2 = await Follower.query()
-        .where('id_utilisateur_abonne', userId)
-        .andWhere('id_utilisateur',paramsId).first();
+      // const verification2 = await Follower.query()
+      //   .where('id_utilisateur_abonne', userId)
+      //   .andWhere('id_utilisateur',paramsId).first();
 
-      if(verification2){
-        await verification2.delete();
-      }
+      // if(verification2){
+      //   await verification2.delete();
+      // }
 
 
     } else {
@@ -30,18 +30,54 @@ export default class FollowersAndFollowingsController {
         idUtilisateurAbonnement: paramsId,
       });
 
-      await Follower.create({
-        idUtilisateur: paramsId,
-        idUtilisateurAbonne: userId,
-      });
+      // await Follower.create({
+      //   idUtilisateur: paramsId,
+      //   idUtilisateurAbonne: userId,
+      // });
     }
    response.redirect().back()
 
   }
-  async getFollowers({view}:HttpContext){
-    return view.render("pages/followers")
+  async getFollowers({view ,auth}:HttpContext){
+
+    const userAll = await User.query().whereNot('id',Number(auth.user?.id) );
+
+
+    const existeOuPas = await Following.findManyBy("id_utilisateur" , auth.user?.id);
+    
+    let tableauAbonnement = [];
+
+    for(let e of existeOuPas){
+        tableauAbonnement.push(e.idUtilisateurAbonnement)
+    }
+    
+    const abonné = await Following.query().where("id_utilisateur_abonnement", Number(auth.user?.id)).whereNot('id_utilisateur',Number(auth.user?.id) ).preload("user")
+  
+    abonné.forEach((e)=>{
+      console.log(e.user.nom)
+    })
+
+    return view.render("pages/followers" ,{abonné,tableauAbonnement,userAll,user:auth.user})
   }
-  async getFollowings({view}:HttpContext){
-    return view.render("pages/followings")
+  async getFollowings({view,auth}:HttpContext){
+
+            const userAll = await User.query().whereNot('id',Number(auth.user?.id) );
+    
+            const existeOuPas = await Following.findManyBy("id_utilisateur" , auth.user?.id);
+    
+            let tableauAbonnement = [];
+    
+            for(let e of existeOuPas){
+                tableauAbonnement.push(e.idUtilisateurAbonnement)
+            }
+    
+
+    const abonnement = await Following.query().where("id_utilisateur",Number(auth.user?.id)).preload("userAbonnement")
+
+    abonnement.forEach((e)=>{
+      console.log(e.userAbonnement.nom)
+    })
+
+    return view.render("pages/followings",{abonnement,tableauAbonnement,userAll,user:auth.user})
   }
 }

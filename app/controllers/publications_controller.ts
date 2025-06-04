@@ -3,7 +3,6 @@ import Publication from '#models/publication'
 import app from '@adonisjs/core/services/app'
 import { cuid } from '@adonisjs/core/helpers'
 import User from '#models/user'
-import Follower from '#models/follower'
 import Following from '#models/following'
 
 
@@ -28,7 +27,7 @@ export default class PublicationsController {
 
     async profil({view ,auth}:HttpContext){
 
-        const abonné = await Follower.query().where("id_utilisateur", Number(auth.user?.id)).count('* as total1');
+        const abonné = await Following.query().where("id_utilisateur_abonnement", Number(auth.user?.id)).count('* as total1');
         const total1 = abonné[0].$extras.total1;
         const abonnement = await Following.query().where("id_utilisateur", Number(auth.user?.id)).count('* as total2');
         const total2 = abonnement[0].$extras.total2;

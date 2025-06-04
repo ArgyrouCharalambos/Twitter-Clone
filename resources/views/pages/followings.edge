@@ -73,7 +73,34 @@
       @include('components/navbar')
       <section class="bg-black lg:w-[600px] h-full md:w-[90%] w-[85%]">
       @include('components/headFollow')
-          
+      @each(abonnements in abonnement)
+      <a href="" class="hover:bg-[#080808] flex gap-2 p-3  border-x-[0.5px] border-b-[0.5px] border-[#333639]">
+        <img class="w-11 h-11 rounded-[50%]" src="https://i5.walmartimages.com/asr/63a7df2a-a706-479e-a388-5dd184fb21d8.30c3b97393fa9b8f7d0e164abc324f24.jpeg" alt="">
+        <div>
+            <div class="flex lg:w-[500px] items-center justify-between">
+                <div class="">
+                    <p class="hover:underline text-white">{{abonnements.userAbonnement.nom}} {{abonnements.userAbonnement.prenom}}</p>
+                    <p class="text-[#70757A]">@ {{abonnements.userAbonnement.prenom}}</p>
+                </div>
+                <form action="
+                /followers/{{abonnements.userAbonnement.id}}
+                " method="POST">
+                    {{ csrfField() }}
+                    @if(tableauAbonnement.includes(abonnements.userAbonnement.id))
+                   <button type="submit" class="bg-sand-12 border-[0.5px] rounded-3xl h-9 py-1 px-2 text-white hover:text-red-500 hover:border-red-500 hover:bg-[#200A0C] font-bold rounded-[30px]">Unfollow</button>
+                    @else  
+                    <button type="submit" class="bg-white h-9 py-1 px-2 text-black hover:bg-[#D7DBDC] font-bold rounded-[30px]">Follow</button>
+                    @endif
+                </form>
+            </div>
+            @if(abonnements.userAbonnement.biographie)
+            <p class="text-white">
+                {{abonnements.userAbonnement.biographie}}
+            </p>
+            @endif
+        </div>
+      </a>
+      @end
         </section>
         @include('components/sectionSearch')
       </div>

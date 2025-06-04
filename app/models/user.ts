@@ -29,6 +29,9 @@ export default class User extends compose(BaseModel, AuthFinder) {
   declare lien: string 
 
   @column()
+  declare userId:number
+
+  @column()
   declare email: string
 
   @column({ serializeAs: null })
