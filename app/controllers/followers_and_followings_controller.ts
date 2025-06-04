@@ -1,6 +1,6 @@
 import Follower from '#models/follower'
 import Following from '#models/following'
-import type { HttpContext } from '@adonisjs/core/http'
+import { HttpContext } from '@adonisjs/core/http'
 
 export default class FollowersAndFollowingsController {
   async followers({ auth, params, response }: HttpContext) {
@@ -37,5 +37,11 @@ export default class FollowersAndFollowingsController {
     }
    response.redirect().back()
 
+  }
+  async getFollowers({view}:HttpContext){
+    return view.render("pages/followers")
+  }
+  async getFollowings({view}:HttpContext){
+    return view.render("pages/followings")
   }
 }

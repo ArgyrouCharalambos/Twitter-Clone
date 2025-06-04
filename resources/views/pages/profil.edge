@@ -112,10 +112,10 @@
               Joined  {{user?.createdAt.toFormat('MM/yyyy')}}
             </p>
             <div class="flex gap-2">
-              <a href="#" class="text-sand-9 hover:underline hover:text-white">
+              <a href="/getFollowers" class="text-sand-9 hover:underline hover:text-white">
                 <span class="font-bold text-white">{{total1}} </span>Followers
             </a>
-              <a href="#" class="text-sand-9 hover:underline hover:text-white">
+              <a href="/getFollowings" class="text-sand-9 hover:underline hover:text-white">
                 <span class="font-bold text-white">{{total2}}</span>Following
             </a>
             </div>
@@ -264,7 +264,8 @@
     container.className = "bg-sand-12";
     const sectionForm = document.createElement("form");
     sectionForm.method = "POST";
-    sectionForm.action = "/signin";    
+    sectionForm.action = "/signin"; 
+    sectionForm.enctype = "multipart/form-data"   
     sectionForm.className = "bg-black overflow-y-auto lg:top-[10%] md:top-[10%] top-[1%] md:left-[16%] lg:left-[28.5%] px-[3px] pt-[5px] pb-[15px] absolute md:w-[520px] lg:w-[43%] h-[100%] w-[100%] md:h-[550px] rounded-[20px] flex flex-col gap-0";
     container.appendChild(sectionForm);
 
@@ -299,6 +300,32 @@
     const sectionMain = document.createElement("div");
     sectionMain.className = "relative"
     sectionForm.appendChild(sectionMain);
+
+    
+    // // const labelProfil = document.createElement("label");
+    // // const inputFileCouverture = document.createElement("input");
+    // const photoProfil = document.createElement("img");
+    // photoProfil.className = "absolute z-1 lg:top-[160px] lg:left-[20px] border-4 border-black rounded-[50%] w-[120px] h-[120px]"
+    // photoProfil.src = "https://i5.walmartimages.com/asr/63a7df2a-a706-479e-a388-5dd184fb21d8.30c3b97393fa9b8f7d0e164abc324f24.jpeg"
+    // sectionMain.appendChild(photoProfil);
+    // const labelProfil = document.createElement("label");
+    // labelProfil.htmlFor = "labelProfil";
+    // labelProfil.name = "labelProfil";
+    // labelProfil.className = "w-full h-full  z-10 flex items-center justify-center";
+    // photoProfil.appendChild(labelProfil);
+
+    // const labelIcon = document.createElement("img");
+    // labelIcon.className = "w-[30px] h-[30px]";
+    // labelIcon.src = "/icons/Home.svg"
+    // labelProfil.appendChild(labelIcon);
+
+
+    // const inputFileProfil = document.createElement("input");
+    // inputFileProfil.id = "labelProfil";
+    // inputFileProfil.name = "labelProfil";
+    // inputFileProfil.type = "file";
+    // inputFileProfil.className = "hidden";
+    // photoProfil.appendChild(inputFileProfil);
 
     const photoCouverture = document.createElement("img");
     photoCouverture.className = "w-full lg:h-[200px]";

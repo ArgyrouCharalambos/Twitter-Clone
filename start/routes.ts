@@ -20,6 +20,10 @@ router.get('/connexion' , [UsersController , 'connexion'])
 
 router.get('/' , [PublicationsController , 'home']).use(middleware.auth()) 
 router.get('/profil' , [PublicationsController , 'profil']).use(middleware.auth()) 
-router.post('/create' , [PublicationsController , 'create']).use(middleware.auth()) 
+router.post('/create' , [PublicationsController , 'create']).use(middleware.auth())
+
+router.get('/getFollowers' , [FollowersAndFollowingsController , 'getFollowers']).use(middleware.auth()) 
+router.get('/getFollowings' , [FollowersAndFollowingsController , 'getFollowings']).use(middleware.auth()) 
+
 
 router.post('/followers/:id', [FollowersAndFollowingsController , 'followers']).use(middleware.auth()) 
