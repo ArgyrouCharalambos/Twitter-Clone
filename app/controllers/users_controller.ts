@@ -1,3 +1,5 @@
+import Following from '#models/following';
+import Publication from '#models/publication';
 import User from '#models/user';
 import { cuid } from '@adonisjs/core/helpers';
 import type { HttpContext } from '@adonisjs/core/http'
@@ -81,4 +83,34 @@ export default class UsersController {
         response.redirect().back()
 
     }
+
+    async profilUtilisateur({view,params,auth}:HttpContext){
+        let id = params.id
+        let users = User.findOrFail(id)
+
+   const abonné = await Following.query().where("id_utilisateur_abonnement",id).count('* as total1');
+       const total1 = abonné[0].$extras.total1;
+      const abonnement = await Following.query().where("id_utilisateur",id).count('* as total2');
+      const total2 = abonnement[0].$extras.total2;
+
+        const count = await Publication.query().where("id_utilisateur", id).count('* as total');
+              const totalPost = count[0].$extras.total
+
+       const publication = await Publication.findManyBy("id_utilisateur", id);
+            
+        
+
+         const existeOuPas = await Following.findManyBy("id_utilisateur" , auth.user?.id);
+            
+            let tableauAbonnement = [];
+        
+            for(let e of existeOuPas){
+                tableauAbonnement.push(e.idUtilisateurAbonnement)
+            }
+
+       const userAll = await User.query().whereNot('id',Number(auth.user?.id) );
+        
+        return view.render('pages/profil_utilisateur',{users,publication,totalPost,total1,total2,userAll,user:auth.user,tableauAbonnement})
+    }
+
 }

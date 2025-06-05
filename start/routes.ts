@@ -19,6 +19,8 @@ router.post('/signin' , [UsersController , 'create'])
 router.get('/connexion' , [UsersController , 'connexion'])
 
 router.post('/edit' , [UsersController , 'uptade']).use(middleware.auth())
+router.get('/user/:id' , [UsersController , 'profilUtilisateur']).use(middleware.auth())
+
 
 
 router.get('/' , [PublicationsController , 'home']).use(middleware.auth()) 
