@@ -17,6 +17,12 @@ export default class User extends compose(BaseModel, AuthFinder) {
   declare nom: string 
 
   @column()
+  declare photoDeProfil: string 
+
+  @column()
+  declare photoDeCouverture: string 
+
+  @column()
   declare prenom: string 
 
   @column()

@@ -19,12 +19,33 @@
     sectionTweet.appendChild(btnRetour);
     const groupe2 = document.createElement("div");
     sectionTweet.appendChild(groupe2);
-    groupe2.className = "flex gap-[10px] mt-[19px] mb-[40px]"
-    const image = document.createElement("img");
-    image.src = "https://i5.walmartimages.com/asr/63a7df2a-a706-479e-a388-5dd184fb21d8.30c3b97393fa9b8f7d0e164abc324f24.jpeg";
-    image.style.borderRadius = "50%";
+    groupe2.className = "flex gap-[10px] mt-[19px] mb-[40px]";
+
+    let testPhoto = '{{user?.photoDeProfil}}'
+    if(testPhoto !== 'null'){
+      const image = document.createElement("img");
+      image.src = "/uploads/{{user?.photoDeProfil}}";
+      image.style.borderRadius = "50%";
     image.className = "rounded-[50%] w-[40px] h-[40px]"
     groupe2.appendChild(image);
+    }
+    else{
+      const block = document.createElement("div");
+      groupe2.appendChild(block);
+
+      
+      block.className = "w-[40px] h-[40px] bg-[#78909C]  text-white flex items-center justify-center rounded-[50%] px-4";
+      const paragraphe = document.createElement("p");
+      paragraphe.textContent = "{{ (user?.nom).charAt(0) }}";
+
+      block.appendChild(paragraphe);
+      
+
+      
+
+
+    }
+   
     const input = document.createElement("textarea");
     input.placeholder = "What's happening?";
     input.className = " w-full bg-black text-white pl-[10px] pt-[5px] outline-none border-none";

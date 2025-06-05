@@ -75,7 +75,13 @@
       @include('components/headFollow')
       @each(abonnements in abonné)
       <a href="" class="hover:bg-[#080808] flex gap-2 p-3  border-x-[0.5px] border-b-[0.5px] border-[#333639]">
-        <img class="w-11 h-11 rounded-[50%]" src="https://i5.walmartimages.com/asr/63a7df2a-a706-479e-a388-5dd184fb21d8.30c3b97393fa9b8f7d0e164abc324f24.jpeg" alt="">
+        @if(abonnements.user.photoDeProfil)
+        <img class="w-11 h-11 rounded-[50%]" src="/uploads/{{abonnements.user.photoDeProfil}}" alt="">
+        @else
+        <div class="w-[40px] h-[40px] bg-[#78909C]  text-white flex items-center justify-center rounded-[50%] px-4">
+          <p>{{ (abonnements.user.nom).charAt(0) }}</p>
+        </div>
+        @endif
         <div>
             <div class="flex lg:w-[500px] items-center justify-between">
                 <div class="">
