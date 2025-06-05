@@ -121,9 +121,26 @@
                 @ {{user?.nom}}
               </p>
             </div>
-            <p class="text-sand-9">
-              Joined  {{user?.createdAt.toFormat('MM/yyyy')}}
+            @if(user?.biographie && user.biographie !== 'null')
+            <p class="w-full text-sand-9">
+              {{user?.biographie}}
             </p>
+            @endif
+            <div class="flex gap-3">
+              @if(user?.localisation && user.localisation !== 'null')
+              <p class="text-sand-9">
+                {{user?.localisation}}
+              </p>
+              @endif
+              @if(user.lien  && user?.lien !== 'null')
+              <a href="{{user?.lien}}" class="text-blue-500">
+                {{user?.lien}}
+              </a>
+              @endif
+              <p class="text-sand-9">
+                Joined  {{user?.createdAt.toFormat('MM/yyyy')}}
+              </p> 
+            </div>
             <div class="flex gap-2">
               <a href="/getFollowers" class="text-sand-9 hover:underline hover:text-white">
                 <span class="font-bold text-white">{{total1}} </span>Followers
