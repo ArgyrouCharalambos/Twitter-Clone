@@ -158,7 +158,7 @@
               {{userPublications.texte}}
             </p>
             @if(userPublications.media)
-            <video class="rounded-xl" src="uploads/{{userPublications.media}}" autoplay loop></video>
+            <video class="rounded-xl" src="uploads/{{userPublications.media}}" controls></video>
             @endif
             
             <img class="rounded-xl" src="uploads/{{userPublications.media}}" alt="">
@@ -177,9 +177,9 @@
                 </p>
               </div>
               <div class="flex items-center gap-2">
-                <a href="">                  <img src="/icons/Buton.svg" alt="" /></a>
+                <a href="/like/{{userPublications.id}}">                  <img src="/icons/Buton.svg" alt="" /></a>
                 <p class="text-sand-10">
-                  85
+                  {{userPublications.nombreLike}}
                 </p>
               </div>
               <div>

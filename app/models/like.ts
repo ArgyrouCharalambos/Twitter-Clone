@@ -4,6 +4,16 @@ import { BaseModel, column } from '@adonisjs/lucid/orm'
 export default class Like extends BaseModel {
   @column({ isPrimary: true })
   declare id: number
+  
+
+  @column()
+  declare idPublication: number
+
+  @column()
+  declare idUtilisateur: number
+
+  @column()
+  declare idUtilisateurLike: number
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

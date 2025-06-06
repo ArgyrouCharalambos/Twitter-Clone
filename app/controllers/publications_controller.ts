@@ -4,14 +4,16 @@ import app from '@adonisjs/core/services/app'
 import { cuid } from '@adonisjs/core/helpers'
 import User from '#models/user'
 import Following from '#models/following'
+import Like from '#models/like'
 
 
 export default class PublicationsController {
 
     async home({view ,auth}:HttpContext){
-        const userPublication = await Publication.query().preload('user')
+        const userPublication = (await Publication.query().preload('like').preload('user')).reverse()
 
-        const userAll = await User.query().whereNot('id',Number(auth.user?.id));
+        const userAll = (await User.query().whereNot('id',Number(auth.user?.id)).limit(3)).reverse();
+
 
 
         const existeOuPas = await Following.findManyBy("id_utilisateur" , auth.user?.id);
@@ -33,7 +35,7 @@ export default class PublicationsController {
         const abonnement = await Following.query().where("id_utilisateur", Number(auth.user?.id)).count('* as total2');
         const total2 = abonnement[0].$extras.total2;
 
-        const userAll = await User.query().whereNot('id',Number(auth.user?.id) );
+        const userAll = (await User.query().whereNot('id',Number(auth.user?.id) ).limit(3)).reverse();
 
         const publication = await Publication.findManyBy("id_utilisateur", auth.user?.id);
         const count = await Publication.query().where("id_utilisateur", Number(auth.user?.id)).count('* as total');
@@ -67,6 +69,36 @@ export default class PublicationsController {
         });
 
         response.redirect('/');
+
+    }
+    async like({params,response,auth}:HttpContext){
+        const {id} = params;
+       const publication = await Publication.findOrFail(id)
+
+       const verification = await Like.query()
+             .where('id_publication', id)
+             .andWhere('id_utilisateur_like', Number(auth.user?.id)).first();
+
+       if(verification){
+        await verification.delete();
+        publication.nombreLike = publication.nombreLike - 1 ;
+       await publication.save();
+
+
+       }
+       else{
+        await Like.create({
+            idPublication:id,
+            idUtilisateur:publication.idUtilisateur,
+            idUtilisateurLike:auth.user?.id
+       })
+       publication.nombreLike = publication.nombreLike + 1 ;
+
+       await publication.save();
+
+       }
+       response.redirect().back()
+    
 
     }
 }
