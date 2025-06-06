@@ -5,6 +5,7 @@ import { cuid } from '@adonisjs/core/helpers'
 import User from '#models/user'
 import Following from '#models/following'
 import Like from '#models/like'
+import Retweet from '#models/retweet'
 
 
 export default class PublicationsController {
@@ -101,4 +102,50 @@ export default class PublicationsController {
     
 
     }
+    async retweet({params,response,auth}:HttpContext){
+        const {id} = params;
+       const publication = await Publication.findOrFail(id)
+
+       const verification = await Retweet.query()
+             .where('id_publication', id)
+             .andWhere('id_utilisateur_retweet', Number(auth.user?.id)).first();
+
+
+       if(verification){
+        await verification.delete();
+        publication.nombreRetweet = publication.nombreRetweet - 1 ;
+
+        const verification2 = await Publication.findOrFail(verification.idPublicationRetweet);
+        if(verification2){
+        await verification2.delete();
+        }
+       }
+       else{
+      
+       publication.nombreRetweet = publication.nombreRetweet + 1 ;
+
+       const publications = await Publication.create({
+        idUtilisateur:auth.user?.id,
+        texte:publication.texte,
+        media:publication.media,
+        nombreRetweet:publication.nombreRetweet,
+        nombreLike:publication.nombreLike
+       })
+
+        await Retweet.create({
+            idPublication:id,
+            idPublicationRetweet:publications.id,
+            idUtilisateur:publication.idUtilisateur,
+            idUtilisateurRetweet:auth.user?.id
+       })
+       
+       }
+
+       await publication.save();
+
+       response.redirect().back()
+    
+
+    }
+
 }

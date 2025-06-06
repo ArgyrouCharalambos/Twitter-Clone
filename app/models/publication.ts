@@ -21,6 +21,9 @@ export default class Publication extends BaseModel {
   @column()
   declare nombreLike:number
 
+  @column()
+  declare nombreRetweet:number
+
    @hasOne(() => User,{
       foreignKey: 'id',
       localKey: 'idUtilisateur'
