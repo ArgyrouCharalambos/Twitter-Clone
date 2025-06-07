@@ -7,7 +7,6 @@ import Following from '#models/following'
 import Like from '#models/like'
 import Retweet from '#models/retweet'
 import Commentaire from '#models/commentaire'
-import auth from '@adonisjs/auth/services/main'
 
 
 export default class PublicationsController {
@@ -19,16 +18,38 @@ export default class PublicationsController {
 
 
 
-        const existeOuPas = await Following.findManyBy("id_utilisateur" , auth.user?.id);
+        const existeOuPaslikeVerifie = await Like.findManyBy("id_utilisateur_like" , auth.user?.id);
+        const existeOuPasCommentaireVerifie = await Commentaire.findManyBy("id_utilisateur" , auth.user?.id);
+        const existeOuPasretweetVerifie = await Retweet.findManyBy("id_utilisateur_retweet" , auth.user?.id);
+        const existeAbonne = await Following.findManyBy("id_utilisateur" , auth.user?.id);
 
+
+
+
+        let likeVerifie = [];
+        let CommentaireVerifie = [];
+        let retweetVerifie = [];
         let tableauAbonnement = [];
 
-        for(let e of existeOuPas){
+
+        for(let e of existeAbonne){
             tableauAbonnement.push(e.idUtilisateurAbonnement)
         }
 
 
-        return view.render('pages/home',{user:auth.user ,userPublication,userAll,tableauAbonnement})
+        for(let e of existeOuPaslikeVerifie){
+            likeVerifie.push(e.idPublication)
+        }
+
+        for(let e of existeOuPasCommentaireVerifie){
+            CommentaireVerifie.push(e.idPublication)
+        }
+        for(let e of existeOuPasretweetVerifie){
+            retweetVerifie.push(e.idPublication)
+        }
+
+
+        return view.render('pages/home',{user:auth.user ,userPublication,userAll,likeVerifie,CommentaireVerifie,retweetVerifie,tableauAbonnement})
     };
 
     async profil({view ,auth}:HttpContext){

@@ -166,28 +166,57 @@
             <div class="md:w-[100%] w-[350px] flex gap-[110px] items-center">
               <div class="flex gap-2">
 
-                <button class="btnCommentaire" type="button" id="{{userPublications.id}}">
-                  <div class="flex gap-1">
-                    <img src="/icons/Reply.svg" alt="" />
+             @if(CommentaireVerifie.includes(userPublications.id))
+             <button class="btnCommentaire" type="button" id="{{userPublications.id}}">
+              <div class="flex gap-1">
+                <p class="p-1 bg-[#0A171F] w-[30px] h-[30px] rounded-[50%] flex items-center justify-center">
+                <img class="w-[20px] h-[30px] rounded-[50%] " src="/icons/commentaire-bleu.svg" alt="" />
+                </p>
+            <p class="line text-blue-500" class="">
+            {{userPublications.nombreCommentaire}}
+            </p>       </div>         </button>          
+@else 
+<button class="btnCommentaire" type="button" id="{{userPublications.id}}">
+  <div class="flex gap-1">
+    <img class="w-[18px] h-[18px]" src="/icons/commentaire.svg" alt="" />
 <p class="line text-sand-10" class="">
-  {{userPublications.nombreCommentaire}}
+{{userPublications.nombreCommentaire}}
 </p>       </div>         </button>
+
+@endif
            
               </div>
               <div class="flex gap-2">
-                <a href="/retweet/{{userPublications.id}}">              <div class="flex gap-1">
-                  <img src="/icons/Retweet.svg" alt="" />
-                  <p class="text-sand-10">
-                    {{userPublications.nombreRetweet}}
-                  </p></div></a>
+             @if(retweetVerifie.includes(userPublications.id))
+             <a href="/retweet/{{userPublications.id}}">              <div class="flex gap-1">
+              <img class="w-[32px] h-[32px] p-[6px] rounded-[50%] bg-[#071A14]" src="/icons/retweet-vert.svg" alt="" />
+              <p class="text-green-500">
+                {{userPublications.nombreRetweet}}
+              </p></div></a>
+                  @else 
+                  <a href="/retweet/{{userPublications.id}}">              <div class="flex gap-1">
+                    <img class="w-[20px] h-[20px]"  src="/icons/retweet.svg" alt="" />
+                    <p class="text-sand-10">
+                      {{userPublications.nombreRetweet}}
+                    </p></div></a>
+                 
+                    @endif
                
               </div>
               <div class="flex items-center gap-2">
-                <a href="/like/{{userPublications.id}}">         <div class="flex items-center gap-1">
-                  <img src="/icons/Buton.svg" alt="" />
-                  <p class="text-sand-10">
-                    {{userPublications.nombreLike}}
-                  </p></div></a>
+             @if(likeVerifie.includes(userPublications.id))
+             <a href="/like/{{userPublications.id}}">         <div class="flex items-center gap-1">
+              <img class="w-[30px] h-[30px] p-[7px] rounded-[50%] bg-[#200A0C]" src="/icons/heart-red.svg" alt="" />
+              <p class="text-red-500">
+                {{userPublications.nombreLike}}
+              </p></div></a>
+                  @else
+                  <a href="/like/{{userPublications.id}}">         <div class="flex items-center gap-1">
+                    <img class="w-[18px] h-[18px]" src="/icons/heart.svg" alt="" />
+                    <p class="text-sand-10">
+                      {{userPublications.nombreLike}}
+                    </p></div></a>
+                    @endif
                
               </div>
               <div>
