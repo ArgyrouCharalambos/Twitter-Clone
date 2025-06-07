@@ -26,8 +26,10 @@ router.get('/user/:id' , [UsersController , 'profilUtilisateur']).use(middleware
 router.get('/' , [PublicationsController , 'home']).use(middleware.auth()) 
 router.get('/profil' , [PublicationsController , 'profil']).use(middleware.auth()) 
 router.get('/like/:id' , [PublicationsController , 'like']).use(middleware.auth()) 
+router.get('/getCommentaire/:id' , [PublicationsController , 'getCommentaire']).use(middleware.auth()) 
 router.get('/retweet/:id' , [PublicationsController , 'retweet']).use(middleware.auth()) 
 router.post('/create' , [PublicationsController , 'create']).use(middleware.auth())
+router.post('/commentaire/:id' , [PublicationsController , 'commentaire']).use(middleware.auth())
 
 router.get('/getFollowers' , [FollowersAndFollowingsController , 'getFollowers']).use(middleware.auth()) 
 router.get('/getFollowings' , [FollowersAndFollowingsController , 'getFollowings']).use(middleware.auth()) 

@@ -1,16 +1,21 @@
 <script>
-  const btnTweet = document.querySelector(`#btnTweet`);
-  
-  btnTweet.addEventListener("click",() => {
-    const container = document.querySelector(`#body`);
+
+  document.querySelectorAll('.btnCommentaire').forEach(btn => {
+    btn.addEventListener('click',(e) =>{
+
+      const container = document.querySelector(`#body`);
     const container2 = document.querySelector(`#allSection`);
     container2.style.opacity = "40%";
     container.className = "bg-white";
     const sectionTweet = document.createElement("form");
     sectionTweet.method = "POST";
-    sectionTweet.action = "/newTweet";5
+    sectionTweet.enctype = "multipart/form-data"
+    sectionTweet.action = `/commentaire/${(e.currentTarget.id)}`;
     sectionTweet.className = "bg-black lg:top-[10%] md:top-[10%] top-[10%] left-[7%] md:left-[16%] lg:left-[50svh] px-[20px] pt-[20px] pb-[15px] absolute md:w-[520px] h-[235px] w-[85%] md:h-[235px] rounded-[20px]";
     container.appendChild(sectionTweet);
+    const inputCSRF = document.createElement("p");
+    inputCSRF.innerHTML = `{{ csrfField() }}`;
+    sectionTweet.appendChild(inputCSRF);
     const btnRetour = document.createElement("a");
     btnRetour.href = "";
     btnRetour.className = "text-white lg:text-[25px] hover:bg-sand-11 rounded-[30px] py-[3px] pt-[0px] px-[10px]"
@@ -48,6 +53,7 @@
    
     const input = document.createElement("textarea");
     input.placeholder = "What's happening?";
+    input.name = "texteTweet";
     input.className = " w-full bg-black text-white pl-[10px] pt-[5px] outline-none border-none";
     groupe2.appendChild(input);
     const groupe3 = document.createElement("div");
@@ -57,12 +63,41 @@
     const groupeIcon = document.createElement("div");
     groupeIcon.className = "flex gap-0"
     groupe3.appendChild(groupeIcon);
-    const lien1 =  document.createElement("a");
-    lien1.href = "#";
-    const image1 = document.createElement("img");
-    lien1.appendChild(image1)
-    image1.src = "/icons/Top-Tweets.svg";
-    lien1.className = "p-1 w-[35px] h-[35px] hover:bg-sand-11 rounded-[30px] flex items-center justify-center font-bold"
+
+    
+    //           const lien1 =  document.createElement("label");
+    // groupeIcon.appendChild(lien1);
+
+    // lien1.name="image";
+    // lien1.htmlFor = "tweetImg";
+    // const image1 = document.createElement("img");
+    // lien1.appendChild(image1)
+    // image1.src = "/icons/Top-Tweets.svg";
+    // lien1.className = "p-1 w-[35px] h-[35px] hover:bg-sand-11 rounded-[30px] flex items-center justify-center font-bold"
+    // const input = document.createElement("input");
+    // input.id = "tweetImg";
+    // input.type = "file";
+    // input.className = "hidden"
+    // groupeIcon.appendChild(input);
+
+
+      
+  
+
+
+
+    const lien1 =  document.createElement("section");
+    lien1.innerHTML = `
+    <label name="image_commentaire"
+                class="text-[#D9D9D9] hover:bg-sand-11 rounded-[30px] w-10 h-10 flex items-center justify-center font-bold"
+                for="image_commentaire"
+              >             <img src="/icons/Top-Tweets.svg" alt="" /></label>
+              <input id="image_commentaire" type="file" name="image_commentaire" class="hidden"> 
+    `;
+    // const image1 = document.createElement("img");
+    // lien1.appendChild(image1)
+    // image1.src = "/icons/Top-Tweets.svg";
+    // lien1.className = "p-1 w-[35px] h-[35px] hover:bg-sand-11 rounded-[30px] flex items-center justify-center font-bold"
     groupeIcon.appendChild(lien1);
     const lien2 =  document.createElement("a");
     lien2.href = "#";
@@ -95,8 +130,115 @@
     groupeIcon.appendChild(lien5);
     const btnPost = document.createElement("button");
     btnPost.className = "text-black w-[70px] h-[35px] py-[5px] px-[10px] font-bold bg-white rounded-[30px] hover:bg-[#D7DBDC]";
-    btnPost.textContent = "Post";
+    btnPost.textContent = "Reply";
     btnPost.type = "submit";
     groupe3.appendChild(btnPost);
-  });
+    })
+  })
+
+
+
+
+  const btnTweet = document.querySelector(`#btnTweet`);
+
+btnTweet.addEventListener("click",(e) => {
+  const container = document.querySelector(`#body`);
+  const container2 = document.querySelector(`#allSection`);
+  container2.style.opacity = "40%";
+  container.className = "bg-white";
+  const sectionTweet = document.createElement("form");
+  sectionTweet.method = "POST";
+  sectionTweet.action = "/newTweet";
+  sectionTweet.className = "bg-black lg:top-[10%] md:top-[10%] top-[10%] left-[7%] md:left-[16%] lg:left-[50svh] px-[20px] pt-[20px] pb-[15px] absolute md:w-[520px] h-[235px] w-[85%] md:h-[235px] rounded-[20px]";
+  container.appendChild(sectionTweet);
+  const btnRetour = document.createElement("a");
+  btnRetour.href = "";
+  btnRetour.className = "text-white lg:text-[25px] hover:bg-sand-11 rounded-[30px] py-[3px] pt-[0px] px-[10px]"
+  btnRetour.style.textDecoration = 'none';
+  btnRetour.textContent = "x";
+  sectionTweet.appendChild(btnRetour);
+  const groupe2 = document.createElement("div");
+  sectionTweet.appendChild(groupe2);
+  groupe2.className = "flex gap-[10px] mt-[19px] mb-[40px]";
+
+  let testPhoto = '{{user?.photoDeProfil}}'
+  if(testPhoto !== 'null'){
+    const image = document.createElement("img");
+    image.src = "/uploads/{{user?.photoDeProfil}}";
+    image.style.borderRadius = "50%";
+  image.className = "rounded-[50%] w-[40px] h-[40px]"
+  groupe2.appendChild(image);
+  }
+  else{
+    const block = document.createElement("div");
+    groupe2.appendChild(block);
+
+    
+    block.className = "w-[40px] h-[40px] bg-[#78909C]  text-white flex items-center justify-center rounded-[50%] px-4";
+    const paragraphe = document.createElement("p");
+    paragraphe.textContent = "{{ (user?.nom).charAt(0) }}";
+
+    block.appendChild(paragraphe);
+    
+
+    
+
+
+  }
+ 
+  const input = document.createElement("textarea");
+  input.placeholder = "What's happening?";
+  input.className = " w-full bg-black text-white pl-[10px] pt-[5px] outline-none border-none";
+  groupe2.appendChild(input);
+  const groupe3 = document.createElement("div");
+  groupe3.className = "flex"
+  groupe3.style.justifyContent = "space-between";
+  sectionTweet.appendChild(groupe3);
+  const groupeIcon = document.createElement("div");
+  groupeIcon.className = "flex gap-0"
+  groupe3.appendChild(groupeIcon);
+  const lien1 =  document.createElement("a");
+  lien1.href = "#";
+  const image1 = document.createElement("img");
+  lien1.appendChild(image1)
+  image1.src = "/icons/Top-Tweets.svg";
+  lien1.className = "p-1 w-[35px] h-[35px] hover:bg-sand-11 rounded-[30px] flex items-center justify-center font-bold"
+  groupeIcon.appendChild(lien1);
+  const lien2 =  document.createElement("a");
+  lien2.href = "#";
+  const image2 = document.createElement("img");
+  lien2.appendChild(image2);
+  lien2.className = "p-1 w-[35px] h-[35px] hover:bg-sand-11 rounded-[30px] flex items-center justify-center font-bold"
+  image2.src = "/icons/Top-Tweets (3).svg";
+  groupeIcon.appendChild(lien2);
+  const lien3 =  document.createElement("a");
+  lien3.href = "#";
+  lien3.className = "p-1 w-[35px] h-[35px] hover:bg-sand-11 rounded-[30px] flex items-center justify-center font-bold";
+  const image3 = document.createElement("img");
+  lien3.appendChild(image3);
+  image3.src = "/icons/Top-Tweets (5).svg";
+  groupeIcon.appendChild(lien3);
+  const lien4 =  document.createElement("a");
+  lien4.href = "#";
+  lien4.className = "p-1 w-[35px] h-[35px] hover:bg-sand-11 rounded-[30px] flex items-center justify-center font-bold";
+  const image4 = document.createElement("img");
+  lien4.appendChild(image4);
+  image4.src = "/icons/Top-Tweets (2).svg";
+  groupeIcon.appendChild(lien4);
+  const lien5 =  document.createElement("a");
+  lien5.href = "#";
+  lien5.className = "p-1 w-[35px] h-[35px] hover:bg-sand-11 rounded-[30px] flex items-center justify-center font-bold";
+  const image5 = document.createElement("img");
+  lien5.appendChild(image5);
+  image5.src = "/icons/date.svg";
+
+  groupeIcon.appendChild(lien5);
+  const btnPost = document.createElement("button");
+  btnPost.className = "text-black w-[70px] h-[35px] py-[5px] px-[10px] font-bold bg-white rounded-[30px] hover:bg-[#D7DBDC]";
+  btnPost.textContent = "Post";
+  btnPost.type = "submit";
+  groupe3.appendChild(btnPost);
+
+
+});
 </script>

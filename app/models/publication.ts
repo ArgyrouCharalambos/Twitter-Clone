@@ -1,7 +1,6 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, hasMany, hasOne } from '@adonisjs/lucid/orm'
+import { BaseModel, column, hasOne } from '@adonisjs/lucid/orm'
 import User from '#models/user'
-import Like from '#models/like'
 import * as relations from '@adonisjs/lucid/types/relations'
 
 
@@ -24,6 +23,9 @@ export default class Publication extends BaseModel {
   @column()
   declare nombreRetweet:number
 
+  @column()
+  declare nombreCommentaire:number
+
    @hasOne(() => User,{
       foreignKey: 'id',
       localKey: 'idUtilisateur'
@@ -31,11 +33,6 @@ export default class Publication extends BaseModel {
     declare user: relations.HasOne<typeof User>
   
 
-    @hasMany(() => Like,{
-      foreignKey: 'idUtilisateur',
-      localKey: 'idUtilisateur'
-    })
-    declare like: relations.HasMany<typeof Like>
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

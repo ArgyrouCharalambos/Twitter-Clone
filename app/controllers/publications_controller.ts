@@ -6,12 +6,14 @@ import User from '#models/user'
 import Following from '#models/following'
 import Like from '#models/like'
 import Retweet from '#models/retweet'
+import Commentaire from '#models/commentaire'
+import auth from '@adonisjs/auth/services/main'
 
 
 export default class PublicationsController {
 
     async home({view ,auth}:HttpContext){
-        const userPublication = (await Publication.query().preload('like').preload('user')).reverse()
+        const userPublication = (await Publication.query().preload('user')).reverse()
 
         const userAll = (await User.query().whereNot('id',Number(auth.user?.id)).limit(3)).reverse();
 
@@ -69,7 +71,8 @@ export default class PublicationsController {
             media:image?.fileName
         });
 
-        response.redirect('/');
+       response.redirect().back()
+
 
     }
     async like({params,response,auth}:HttpContext){
@@ -146,6 +149,44 @@ export default class PublicationsController {
        response.redirect().back()
     
 
+    }
+    async commentaire({request,params,response,auth}:HttpContext){
+        const texteTweet:string = request.input("texteTweet");
+        const image = request.file('image_commentaire');
+        const publications = Publication.findOrFail(params.id);
+
+
+
+            (await publications).nombreCommentaire = (await publications).nombreCommentaire + 1;
+            if(image){
+                await image.move(app.makePath('public/uploads'),{
+                    name: `${cuid()}.${image.extname}`
+                  });
+            };
+            (await publications).save()
+        
+
+        await Commentaire.create({
+            texte:texteTweet,
+            idUtilisateur:auth.user?.id,
+            idPublication: params.id,
+            media:image?.fileName 
+        });
+
+     
+        response.redirect().back()
+       
+
+    }
+    async getCommentaire({view,params,auth}:HttpContext){
+
+        const {id} = params;
+
+        const publication = await Publication.findOrFail(id);
+
+        const commentaire = await Commentaire.query().where('idPublication',id).preload('user');
+
+        return view.render('pages/tweet',{commentaire,publication ,user:auth.user})
     }
 
 }
