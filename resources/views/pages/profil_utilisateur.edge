@@ -191,9 +191,9 @@
                     @ {{(await users).nom}}
                   </p>
                 </div>
-                <p class="text-[#D9D9D9]">
+                <a href="/getCommentaire/{{publications.id}}" class="text-[#D9D9D9]">
                   {{publications.texte}}
-                </p>
+                </a>
                 @if(publications.media)
                 <video src="/uploads/{{publications.media}}"  class="rounded-xl" controls alt="" ></video>
                 @endif
