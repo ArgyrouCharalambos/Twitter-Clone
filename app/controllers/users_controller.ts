@@ -1,5 +1,8 @@
+import Commentaire from '#models/commentaire';
 import Following from '#models/following';
+import Like from '#models/like';
 import Publication from '#models/publication';
+import Retweet from '#models/retweet';
 import User from '#models/user';
 import { cuid } from '@adonisjs/core/helpers';
 import type { HttpContext } from '@adonisjs/core/http'
@@ -98,19 +101,40 @@ export default class UsersController {
 
        const publication = await Publication.findManyBy("id_utilisateur", id);
             
+         const existeOuPaslikeVerifie = await Like.findManyBy("id_utilisateur_like" , auth.user?.id);
+                const existeOuPasCommentaireVerifie = await Commentaire.findManyBy("id_utilisateur" , auth.user?.id);
+                const existeOuPasretweetVerifie = await Retweet.findManyBy("id_utilisateur_retweet" , auth.user?.id);
+                const existeAbonne = await Following.findManyBy("id_utilisateur" , auth.user?.id);
         
-
-         const existeOuPas = await Following.findManyBy("id_utilisateur" , auth.user?.id);
+        
+        
+        
+                let likeVerifie = [];
+                let CommentaireVerifie = [];
+                let retweetVerifie = [];
+                let tableauAbonnement = [];
+        
+        
+                for(let e of existeAbonne){
+                    tableauAbonnement.push(e.idUtilisateurAbonnement)
+                }
+        
+        
+                for(let e of existeOuPaslikeVerifie){
+                    likeVerifie.push(e.idPublication)
+                }
+        
+                for(let e of existeOuPasCommentaireVerifie){
+                    CommentaireVerifie.push(e.idPublication)
+                }
+                for(let e of existeOuPasretweetVerifie){
+                    retweetVerifie.push(e.idPublication)
+                }
             
-            let tableauAbonnement = [];
-        
-            for(let e of existeOuPas){
-                tableauAbonnement.push(e.idUtilisateurAbonnement)
-            }
 
        const userAll = await User.query().whereNot('id',Number(auth.user?.id) );
         
-        return view.render('pages/profil_utilisateur',{users,publication,totalPost,total1,total2,userAll,user:auth.user,tableauAbonnement})
+        return view.render('pages/profil_utilisateur',{likeVerifie,retweetVerifie,CommentaireVerifie,users,publication,totalPost,total1,total2,userAll,user:auth.user,tableauAbonnement})
     }
 
 }
