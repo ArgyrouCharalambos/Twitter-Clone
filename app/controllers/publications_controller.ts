@@ -61,7 +61,7 @@ export default class PublicationsController {
 
         const userAll = (await User.query().whereNot('id',Number(auth.user?.id) ).limit(3)).reverse();
 
-        const publication = await Publication.findManyBy("id_utilisateur", auth.user?.id);
+        const publication = await Publication.query().where("id_utilisateur", Number(auth.user?.id)).preload('retweet',(postsQuery) => {postsQuery.preload('publication')});
 
         const count = await Publication.query().where("id_utilisateur", Number(auth.user?.id)).count('* as total');
         const totalPost = count[0].$extras.total
