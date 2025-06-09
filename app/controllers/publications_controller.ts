@@ -80,17 +80,23 @@ export default class PublicationsController {
         const texteTweet:string = request.input("texteTweet");
         const image = request.file('image');
 
+
         if(image){
             await image.move(app.makePath('public/uploads'),{
                 name: `${cuid()}.${image.extname}`
               });
         };
 
-        await Publication.create({
-            texte:texteTweet,
-            idUtilisateur: auth.user?.id,
-            media:image?.fileName
-        });
+        if(texteTweet !== null) {
+            await Publication.create({
+                texte:texteTweet,
+                idUtilisateur: auth.user?.id,
+                media:image?.fileName || 'null'
+            });
+            
+        }
+
+       
 
        response.redirect().back()
 
