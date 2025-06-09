@@ -12,6 +12,8 @@ import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
 import UsersController from '#controllers/users_controller'
 import FollowersAndFollowingsController from '#controllers/followers_and_followings_controller'
+import MessagesController from '#controllers/messages_controller'
+
 
 router.on('/login').render('security/login')
 
@@ -19,7 +21,11 @@ router.post('/signin' , [UsersController , 'create'])
 router.get('/connexion' , [UsersController , 'connexion'])
 
 router.post('/edit' , [UsersController , 'uptade']).use(middleware.auth())
-router.get('/user/:id' , [UsersController , 'profilUtilisateur']).use(middleware.auth())
+
+router.get('/messages' , [MessagesController , 'index']).use(middleware.auth())
+
+
+
 
 
 
@@ -35,4 +41,9 @@ router.get('/getFollowers' , [FollowersAndFollowingsController , 'getFollowers']
 router.get('/getFollowings' , [FollowersAndFollowingsController , 'getFollowings']).use(middleware.auth()) 
 
 
+router.get('/user/:id' , [UsersController , 'profilUtilisateur']).use(middleware.auth())
+
+router.get('/getMessage/:id' , [MessagesController , 'getMessage']).use(middleware.auth())
+
+router.post('/message/:id' , [MessagesController , 'messageCreate']).use(middleware.auth())
 router.post('/followers/:id', [FollowersAndFollowingsController , 'followers']).use(middleware.auth()) 

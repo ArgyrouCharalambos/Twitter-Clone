@@ -241,4 +241,18 @@ btnTweet.addEventListener("click",(e) => {
 
 
 });
+
+document.querySelectorAll('.btnMessage').forEach(btn => {
+  btn.addEventListener('click',function ecrireMessage(e) {
+    const nomUser = document.querySelector(`.nom`);
+    nomUser.textContent = e.currentTarget.name;
+    console.log(e.currentTarget.id)
+
+
+    const formulaire = document.querySelector(`#formulaire`);
+
+    formulaire.action = `/message/${e.currentTarget.id}`;
+
+  })
+  })
 </script>

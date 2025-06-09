@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="preconnect" href="https://fonts.bunny.net" />
+    <link
+      href="https://fonts.bunny.net/css?family=instrument-sans:400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --sand-1: #fdfdfc;
+        --sand-2: #f9f9f8;
+        --sand-3: #f1f0ef;
+        --sand-4: #e9e8e6;
+        --sand-5: #e2e1de;
+        --sand-6: #dad9d6;
+        --sand-7: #cfceca;
+        --sand-8: #bcbbb5;
+        --sand-9: #8d8d86;
+        --sand-10: #82827c;
+        --sand-11: #63635e;
+        --sand-12: #21201c;
+      }
+    </style>
+
+    <script src="https://cdn.tailwindcss.com">
+      
+    </script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: [ "Instrument Sans", "sans-serif" ]
+            },
+            colors: {
+              primary: {
+                DEFAULT: "#5A45FF",
+                lighter: "#a599ff"
+              },
+              sand: {
+                1: "var(--sand-1)",
+                2: "var(--sand-2)",
+                3: "var(--sand-3)",
+                4: "var(--sand-4)",
+                5: "var(--sand-5)",
+                6: "var(--sand-6)",
+                7: "var(--sand-7)",
+                8: "var(--sand-8)",
+                9: "var(--sand-9)",
+                10: "var(--sand-10)",
+                11: "var(--sand-11)",
+                12: "var(--sand-12)"
+              }
+            }
+          }
+        }
+      };
+    </script>
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @stack('dumper')
+  </head>
+  <body class="bg-black h-full " id="body">
+    <div id="allSection" class="flex h-full bg-black ">
+      @include('components/navbar')
+     <section class="h-full lg:w-[400px] border-x-[0.5px] border-[#333639]">
+        <div class="flex justify-between items-center p-3 mb-3">
+            <p class="text-xl text-white font-bold">Messages</p>
+            <div class="flex gap-1">
+                <img class="w-6 h-6" src="/icons/Settings.svg" alt="">
+            </div>
+        </div>
+        <div class="flex justify-center items-center mb-3">
+            <input placeholder="Search Direct Messages" class="pl-3 lg:w-[370px]  rounded-3xl bg-black border-[0.5px] hover:border-blue-400 border-[#333639] py-2" type="text" >
+        </div>
+           
+        @each(userAlls in userAll)
+        <a href="/getMessage/{{userAlls.id}}" class="btnMessage w-full flex gap-2 p-3 hover:bg-[#16181C]">
+            <img
+              class="w-10 h-10 rounded-[50%]"
+              src="/uploads/{{userAlls.photoDeProfil}}"
+              alt=""
+            />
+            <div class="flex">
+                <p class="text-white font-bold">{{userAlls.nom}}</p>
+            <p class="text-sand-10">@ {{userAlls.prenom}}</p>
+            </div>
+        </a>
+        @end
+
+     </section>
+   <div class="flex items-center justify-center">
+    <div>
+        <p class="text-white font-bold text-4xl pl-16">Bienvenue !</p>
+    <p class="text-white font-bold text-4xl pl-16"> Consultez vos messages ici.</p>
+    
+    </div>
+   </div>
+        
+      @include('components/newTweet')
+    </div>
+  </body>
+</html>
