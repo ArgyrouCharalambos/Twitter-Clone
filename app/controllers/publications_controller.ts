@@ -62,18 +62,36 @@ export default class PublicationsController {
         const userAll = (await User.query().whereNot('id',Number(auth.user?.id) ).limit(3)).reverse();
 
         const publication = await Publication.findManyBy("id_utilisateur", auth.user?.id);
+
         const count = await Publication.query().where("id_utilisateur", Number(auth.user?.id)).count('* as total');
         const totalPost = count[0].$extras.total
 
         const existeOuPas = await Following.findManyBy("id_utilisateur" , auth.user?.id);
+        const existeOuPaslikeVerifie = await Like.findManyBy("id_utilisateur_like" , auth.user?.id);
+        const existeOuPasCommentaireVerifie = await Commentaire.findManyBy("id_utilisateur" , auth.user?.id);
+        const existeOuPasretweetVerifie = await Retweet.findManyBy("id_utilisateur_retweet" , auth.user?.id);
 
         let tableauAbonnement = [];
+        let likeVerifie = [];
+        let CommentaireVerifie = [];
+        let retweetVerifie = [];
+
+        for(let e of existeOuPaslikeVerifie){
+            likeVerifie.push(e.idPublication)
+        }
+
+        for(let e of existeOuPasCommentaireVerifie){
+            CommentaireVerifie.push(e.idPublication)
+        }
+        for(let e of existeOuPasretweetVerifie){
+            retweetVerifie.push(e.idPublication)
+        }
 
         for(let e of existeOuPas){
             tableauAbonnement.push(e.idUtilisateurAbonnement)
         }
 
-        return view.render('pages/profil',{user:auth.user ,publication,totalPost,userAll,total1,total2,tableauAbonnement})
+        return view.render('pages/profil',{retweetVerifie,CommentaireVerifie,likeVerifie,user:auth.user ,publication,totalPost,userAll,total1,total2,tableauAbonnement})
     };
     
     async create({request ,auth,response}:HttpContext){
@@ -159,7 +177,8 @@ export default class PublicationsController {
         texte:publication.texte,
         media:publication.media,
         nombreRetweet:publication.nombreRetweet,
-        nombreLike:publication.nombreLike
+        nombreLike:publication.nombreLike,
+        nombreCommentaire:publication.nombreCommentaire
        })
 
         await Retweet.create({
