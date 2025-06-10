@@ -52,47 +52,7 @@ export default class PublicationsController {
         return view.render('pages/home',{user:auth.user ,userPublication,userAll,likeVerifie,CommentaireVerifie,retweetVerifie,tableauAbonnement})
     };
 
-    async profil({view ,auth}:HttpContext){
-
-        const abonné = await Following.query().where("id_utilisateur_abonnement", Number(auth.user?.id)).count('* as total1');
-        const total1 = abonné[0].$extras.total1;
-        const abonnement = await Following.query().where("id_utilisateur", Number(auth.user?.id)).count('* as total2');
-        const total2 = abonnement[0].$extras.total2;
-
-        const userAll = (await User.query().whereNot('id',Number(auth.user?.id) ).limit(3)).reverse();
-
-        const publication = await Publication.query().where("id_utilisateur", Number(auth.user?.id)).preload('retweet',(postsQuery) => {postsQuery.preload('publication')});
-
-        const count = await Publication.query().where("id_utilisateur", Number(auth.user?.id)).count('* as total');
-        const totalPost = count[0].$extras.total
-
-        const existeOuPas = await Following.findManyBy("id_utilisateur" , auth.user?.id);
-        const existeOuPaslikeVerifie = await Like.findManyBy("id_utilisateur_like" , auth.user?.id);
-        const existeOuPasCommentaireVerifie = await Commentaire.findManyBy("id_utilisateur" , auth.user?.id);
-        const existeOuPasretweetVerifie = await Retweet.findManyBy("id_utilisateur_retweet" , auth.user?.id);
-
-        let tableauAbonnement = [];
-        let likeVerifie = [];
-        let CommentaireVerifie = [];
-        let retweetVerifie = [];
-
-        for(let e of existeOuPaslikeVerifie){
-            likeVerifie.push(e.idPublication)
-        }
-
-        for(let e of existeOuPasCommentaireVerifie){
-            CommentaireVerifie.push(e.idPublication)
-        }
-        for(let e of existeOuPasretweetVerifie){
-            retweetVerifie.push(e.idPublication)
-        }
-
-        for(let e of existeOuPas){
-            tableauAbonnement.push(e.idUtilisateurAbonnement)
-        }
-
-        return view.render('pages/profil',{retweetVerifie,CommentaireVerifie,likeVerifie,user:auth.user ,publication,totalPost,userAll,total1,total2,tableauAbonnement})
-    };
+    
     
     async create({request ,auth,response}:HttpContext){
         const texteTweet:string = request.input("texteTweet");

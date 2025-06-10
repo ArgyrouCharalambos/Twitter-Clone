@@ -30,7 +30,7 @@ router.get('/messages' , [MessagesController , 'index']).use(middleware.auth())
 
 
 router.get('/' , [PublicationsController , 'home']).use(middleware.auth()) 
-router.get('/profil' , [PublicationsController , 'profil']).use(middleware.auth()) 
+router.get('/profil' , [UsersController , 'profil']).use(middleware.auth()) 
 router.get('/like/:id' , [PublicationsController , 'like']).use(middleware.auth()) 
 router.get('/getCommentaire/:id' , [PublicationsController , 'getCommentaire']).use(middleware.auth()) 
 router.get('/retweet/:id' , [PublicationsController , 'retweet']).use(middleware.auth()) 
