@@ -186,11 +186,9 @@
             </a>
             @endif
               @if(userPublications.media)
-                <video class="rounded-xl" src="uploads/{{ userPublications.media }}" controls>
-                </video>
+              <img class="rounded-xl" src="uploads/{{ userPublications.media }}" alt="" />
               @endif
               
-              <img class="rounded-xl" src="uploads/{{ userPublications.media }}" alt="" />
 
               <div class="md:w-[100%] w-[350px] flex gap-[110px] items-center">
                 <div class="flex gap-2">

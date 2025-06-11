@@ -85,11 +85,17 @@
            
         @each(userAlls in userAll)
         <a href="/getMessage/{{userAlls.id}}" class="btnMessage w-full flex gap-2 p-3 hover:bg-[#16181C]">
-            <img
-              class="w-10 h-10 rounded-[50%]"
-              src="/uploads/{{userAlls.photoDeProfil}}"
-              alt=""
-            />
+          @if(userAlls.photoDeProfil)
+          <img
+            class="lg:w-10 lg:h-10 md:w-[55px] rounded-[50%] md:mr-0 lg:mr-2"
+            src="/uploads/{{userAlls.photoDeProfil}}"
+            alt=""
+          />
+          @else
+          <div class="lg:w-10 lg:h-10 md:w-[55px] bg-[#78909C] text-white flex items-center justify-center rounded-[50%] md:mr-0 lg:mr-2">
+            <p>{{ (userAlls.nom).charAt(0) }}</p>
+          </div>
+          @endif
             <div class="flex">
                 <p class="text-white font-bold">{{userAlls.nom}}</p>
             <p class="text-sand-10">@ {{userAlls.prenom}}</p>
@@ -101,11 +107,17 @@
      <form id="formulaire" method="POST" action="/message/{{(await userInconu).id}}" enctype="multipart/form-data" class="relative">
         {{ csrfField() }}
         <div class="flex items-center p-3 gap-2">
-            <img
-              class="w-10 h-10 rounded-[50%]"
-              src="/uploads/{{(await userInconu).photoDeProfil}}"
-              alt=""
-            />
+          @if((await userInconu).photoDeProfil)
+          <img
+            class="lg:w-10 lg:h-10 md:w-[55px] rounded-[50%] md:mr-0 lg:mr-2"
+            src="/uploads/{{(await userInconu).photoDeProfil}}"
+            alt=""
+          />
+          @else
+          <div class="lg:w-10 lg:h-10 md:w-[55px] bg-[#78909C] text-white flex items-center justify-center rounded-[50%] md:mr-0 lg:mr-2">
+            <p>{{ (await userInconu).nom.charAt(0) }}</p>
+          </div>
+          @endif
             <a href="/user/{{(await userInconu).id}}" id="nomUser" class="hover:underline text-white font-bold">{{(await userInconu).nom}} </a>
         </div>
         <div class="w-full">
