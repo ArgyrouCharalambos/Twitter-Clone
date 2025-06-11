@@ -199,60 +199,166 @@
              @endif
 
 
-                <div class="md:w-[100%] w-[350px] flex gap-[110px] items-center">
-                  <div class="flex gap-2">
-    
-                 <button class="btnCommentaire" type="button" id="{{publications.id}}">
+             <div class="md:w-[100%] w-[350px] flex gap-[110px] items-center">
+              <div class="flex gap-2">
+
+                @if(publications?.retweet?.idPublication)
+                <button class="btnCommentaire" type="button" id="{{ publications?.retweet?.idPublication }}">
                   <div class="flex gap-1 hover:text-blue-500">
-                    <p class="p-1 w-[30px] h-[30px] rounded-[50%]  hover:bg-[#0A171F]  flex items-center justify-center">
-                    <img class="w-[18px] h-[25px] rounded-[50%] " onmouseover="this.src='/icons/commentaire-bleu.svg'"
-                    onmouseout="this.src='/icons/commentaire.svg'" src="/icons/commentaire.svg" alt="" />
+                    <p
+                      class="p-1 w-[30px] h-[30px] rounded-[50%]  hover:bg-[#0A171F]  flex items-center justify-center"
+                    >
+                      <img
+                        class="w-[18px] h-[25px] rounded-[50%] "
+                        onmouseover="this.src='/icons/commentaire-bleu.svg'"
+                        onmouseout="this.src='/icons/commentaire.svg'"
+                        src="/icons/commentaire.svg"
+                        alt=""
+                      />
                     </p>
-                <p class="line text-sand-10 hover:text-blue-500 mt-1" class="">
-                {{publications.nombreCommentaire}}
-                </p>       </div>         </button>          
-    
-               
-                  </div>
-                  <div class="flex gap-2">
-                 @if(retweetVerifie.includes(publications.id))
-                 <a href="/retweet/{{publications.id}}">              <div class="flex gap-1">
-                  <img class="w-[32px] h-[32px] p-[6px] rounded-[50%] hover:bg-[#071A14]" src="/icons/retweet-vert.svg" alt="" />
-                  <p class="text-green-500 mt-1">
-                    {{publications.nombreRetweet}}
-                  </p></div></a>
-                      @else 
-                      <a href="/retweet/{{publications.id}}">              <div class="flex gap-1">
-                        <img class="w-[32px] h-[32px] p-[6px] rounded-[50%] hover:bg-[#071A14]" onmouseover="this.src='/icons/retweet-vert.svg'"
-                        onmouseout="this.src='/icons/retweet.svg'" src="/icons/retweet.svg" alt="" />
-                        <p class="text-sand-10 relative top-[5px] ml-2">
-                          {{publications.nombreRetweet}}
-                        </p></div></a>
-                        @endif
-                   
-                  </div>
-                  <div class="flex items-center gap-2">
-                 @if(likeVerifie.includes(publications.id))
-                 <a href="/like/{{publications.id}}">         <div class="flex items-center gap-1">
-                  <img class="w-[30px] h-[30px] p-[7px] rounded-[50%] hover:bg-[#200914]" src="/icons/heart-red.svg"  alt="" />
-                  <p class="text-[#F91880]">
-                    {{publications.nombreLike}}
-                  </p></div></a>
-                      @else
-                      <a href="/like/{{publications.id}}">         <div class="flex items-center gap-1">
-                        <img class="w-[30px] h-[30px] p-[7px] rounded-[50%] hover:bg-[#200914]" src="/icons/heart.svg" onmouseover="this.src='/icons/heart-red2.svg'"
-                        onmouseout="this.src='/icons/heart.svg'" alt="" />
-                        <p class="text-sand-10">
-                          {{publications.nombreLike}}
-                        </p></div></a>
-                        @endif
-                   
-                  </div>
-                  <div>
-                    <a href="">                  <img src="/icons/Share.svg" alt="" /></a>
-                  </div>
-                </div>
+                    <p class="line text-sand-10 hover:text-blue-500 mt-1" class="">
+                      {{ publications.retweet?.publication?.nombreCommentaire }}
+                    </p>
+                  </div></button>
+                @else
+                <button class="btnCommentaire" type="button" id="{{ publications.id }}">
+                  <div class="flex gap-1 hover:text-blue-500">
+                    <p
+                      class="p-1 w-[30px] h-[30px] rounded-[50%]  hover:bg-[#0A171F]  flex items-center justify-center"
+                    >
+                      <img
+                        class="w-[18px] h-[25px] rounded-[50%] "
+                        onmouseover="this.src='/icons/commentaire-bleu.svg'"
+                        onmouseout="this.src='/icons/commentaire.svg'"
+                        src="/icons/commentaire.svg"
+                        alt=""
+                      />
+                    </p>
+                    <p class="line text-sand-10 hover:text-blue-500 mt-1" class="">
+                      {{ publications.nombreCommentaire }}
+                    </p>
+                  </div></button>
+                  @endif
+
               </div>
+              <div class="flex gap-2">
+                @if(publications?.retweet?.idPublication)
+                @if(retweetVerifie.includes(publications.retweet?.idPublication))
+                  <a href="/retweet/{{ userPublications.retweet?.idPublication }}">                      <div class="flex gap-1">
+                      <img
+                        class="w-[32px] h-[32px] p-[6px] rounded-[50%] hover:bg-[#071A14]"
+                        src="/icons/retweet-vert.svg"
+                        alt=""
+                      />
+                      <p class="text-green-500 mt-1">
+                        {{ publications.retweet?.publication?.nombreRetweet }}
+                      </p>
+                    </div></a>
+                @else
+                  <a href="/retweet/{{ publications.retweet?.idPublication }}">                      <div class="flex gap-1">
+                      <img
+                        class="w-[32px] h-[32px] p-[6px] rounded-[50%] hover:bg-[#071A14]"
+                        onmouseover="this.src='/icons/retweet-vert.svg'"
+                        onmouseout="this.src='/icons/retweet.svg'"
+                        src="/icons/retweet.svg"
+                        alt=""
+                      />
+                      <p class="text-sand-10 relative top-[5px] ml-2">
+                        {{ publications.retweet?.publication?.nombreRetweet }}
+                      </p>
+                    </div></a>
+                @endif
+                @else
+                @if(retweetVerifie.includes(publications.id))
+                  <a href="/retweet/{{ publications.id }}">                      <div class="flex gap-1">
+                      <img
+                        class="w-[32px] h-[32px] p-[6px] rounded-[50%] hover:bg-[#071A14]"
+                        src="/icons/retweet-vert.svg"
+                        alt=""
+                      />
+                      <p class="text-green-500 mt-1">
+                        {{ publications.nombreRetweet }}
+                      </p>
+                    </div></a>
+                @else
+                  <a href="/retweet/{{ publications.id }}">                      <div class="flex gap-1">
+                      <img
+                        class="w-[32px] h-[32px] p-[6px] rounded-[50%] hover:bg-[#071A14]"
+                        onmouseover="this.src='/icons/retweet-vert.svg'"
+                        onmouseout="this.src='/icons/retweet.svg'"
+                        src="/icons/retweet.svg"
+                        alt=""
+                      />
+                      <p class="text-sand-10 relative top-[5px] ml-2">
+                        {{ publications.nombreRetweet }}
+                      </p>
+                    </div></a>
+                @endif
+                @endif
+                
+              </div>
+              <div class="flex items-center gap-2">
+                @if(publications?.retweet?.idPublication)
+                  @if(likeVerifie.includes(publications?.retweet?.idPublication))
+                    <a href="/like/{{ publications?.retweet?.idPublication }}">                        <div class="flex items-center gap-1">
+                        <img
+                          class="w-[30px] h-[30px] p-[7px] rounded-[50%] hover:bg-[#200914]"
+                          src="/icons/heart-red.svg"
+                          alt=""
+                        />
+                        <p class="text-[#F91880]">
+                          {{ publications.retweet?.publication?.nombreLike }}
+                        </p>
+                      </div></a>
+                  @else
+                    <a href="/like/{{ publications?.retweet?.idPublication }}">                        <div class="flex items-center gap-1">
+                        <img
+                          class="w-[30px] h-[30px] p-[7px] rounded-[50%] hover:bg-[#200914]"
+                          src="/icons/heart.svg"
+                          onmouseover="this.src='/icons/heart-red2.svg'"
+                          onmouseout="this.src='/icons/heart.svg'"
+                          alt=""
+                        />
+                        <p class="text-sand-10">
+                          {{ publications.retweet?.publication?.nombreLike }}
+                        </p>
+                      </div></a>
+                  @endif
+                @else
+                  @if(likeVerifie.includes(publications.id))
+                    <a href="/like/{{ publications.id }}">                        <div class="flex items-center gap-1">
+                        <img
+                          class="w-[30px] h-[30px] p-[7px] rounded-[50%] hover:bg-[#200914]"
+                          src="/icons/heart-red.svg"
+                          alt=""
+                        />
+                        <p class="text-[#F91880]">
+                          {{ publications.nombreLike }}
+                        </p>
+                      </div></a>
+                  @else
+                    <a href="/like/{{ publications.id }}">                        <div class="flex items-center gap-1">
+                        <img
+                          class="w-[30px] h-[30px] p-[7px] rounded-[50%] hover:bg-[#200914]"
+                          src="/icons/heart.svg"
+                          onmouseover="this.src='/icons/heart-red2.svg'"
+                          onmouseout="this.src='/icons/heart.svg'"
+                          alt=""
+                        />
+                        <p class="text-sand-10">
+                          {{ publications.nombreLike }}
+                        </p>
+                      </div></a>
+                  @endif
+                @endif
+                
+                
+              </div>
+              <div>
+                <a href="">                    <img src="/icons/Share.svg" alt="" /></a>
+              </div>
+            </div>
+          </div>
             </section>
             @end
           </div>

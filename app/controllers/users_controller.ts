@@ -99,7 +99,7 @@ export default class UsersController {
         const count = await Publication.query().where("id_utilisateur", id).count('* as total');
               const totalPost = count[0].$extras.total
 
-       const publication = await Publication.findManyBy("id_utilisateur", id);
+       const publication = await Publication.query().where("id_utilisateur", id).preload('retweet',(e) =>{e.preload('publication')});
             
          const existeOuPaslikeVerifie = await Like.findManyBy("id_utilisateur_like" , auth.user?.id);
                 const existeOuPasCommentaireVerifie = await Commentaire.findManyBy("id_utilisateur" , auth.user?.id);
