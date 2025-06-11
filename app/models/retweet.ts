@@ -11,7 +11,7 @@ export default class Retweet extends BaseModel {
   declare idPublication: number 
 
   @hasOne(() => Publication,{
-        foreignKey: 'id',
+        foreignKey: 'id', 
         localKey: 'idPublication'
       })
   declare publication: relations.HasOne<typeof Publication>

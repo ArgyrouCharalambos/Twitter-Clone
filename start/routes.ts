@@ -19,31 +19,22 @@ router.on('/login').render('security/login')
 
 router.post('/signin' , [UsersController , 'create'])
 router.get('/connexion' , [UsersController , 'connexion'])
-
 router.post('/edit' , [UsersController , 'uptade']).use(middleware.auth())
-
 router.get('/messages' , [MessagesController , 'index']).use(middleware.auth())
-
-
-
-
 
 
 router.get('/' , [PublicationsController , 'home']).use(middleware.auth()) 
 router.get('/profil' , [UsersController , 'profil']).use(middleware.auth()) 
-router.get('/like/:id' , [PublicationsController , 'like']).use(middleware.auth()) 
-router.get('/getCommentaire/:id' , [PublicationsController , 'getCommentaire']).use(middleware.auth()) 
-router.get('/retweet/:id' , [PublicationsController , 'retweet']).use(middleware.auth()) 
 router.post('/create' , [PublicationsController , 'create']).use(middleware.auth())
-router.post('/commentaire/:id' , [PublicationsController , 'commentaire']).use(middleware.auth())
 
 router.get('/getFollowers' , [FollowersAndFollowingsController , 'getFollowers']).use(middleware.auth()) 
 router.get('/getFollowings' , [FollowersAndFollowingsController , 'getFollowings']).use(middleware.auth()) 
 
-
-router.get('/user/:id' , [UsersController , 'profilUtilisateur']).use(middleware.auth())
-
-router.get('/getMessage/:id' , [MessagesController , 'getMessage']).use(middleware.auth())
-
+router.get('/like/:id' , [PublicationsController , 'like']).use(middleware.auth()) 
+router.post('/commentaire/:id' , [PublicationsController , 'commentaire']).use(middleware.auth())
+router.get('/getCommentaire/:id' , [PublicationsController , 'getCommentaire']).use(middleware.auth()) 
 router.post('/message/:id' , [MessagesController , 'messageCreate']).use(middleware.auth())
+router.get('/user/:id' , [UsersController , 'profilUtilisateur']).use(middleware.auth())
+router.get('/getMessage/:id' , [MessagesController , 'getMessage']).use(middleware.auth())
+router.get('/retweet/:id' , [PublicationsController , 'retweet']).use(middleware.auth()) 
 router.post('/followers/:id', [FollowersAndFollowingsController , 'followers']).use(middleware.auth()) 

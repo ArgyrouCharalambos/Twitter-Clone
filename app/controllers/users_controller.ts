@@ -145,7 +145,9 @@ export default class UsersController {
 
         const userAll = (await User.query().whereNot('id',Number(auth.user?.id) ).limit(3)).reverse();
 
-        const publication = await Publication.query().where("id_utilisateur", Number(auth.user?.id)).preload('retweet',(postsQuery) => {postsQuery.preload('publication')});
+        const publication = await Publication.query().where("id_utilisateur", Number(auth.user?.id)).preload('retweet',
+            (e) => {e.preload('publication')}
+        );
 
         const count = await Publication.query().where("id_utilisateur", Number(auth.user?.id)).count('* as total');
         const totalPost = count[0].$extras.total
@@ -174,6 +176,9 @@ export default class UsersController {
         for(let e of existeOuPas){
             tableauAbonnement.push(e.idUtilisateurAbonnement)
         }
+        publication.forEach(e => {
+            console.log(e.retweet?.publication?.nombreLike)
+        });
         
 
         return view.render('pages/profil',{retweetVerifie,CommentaireVerifie,likeVerifie,user:auth.user ,publication,totalPost,userAll,total1,total2,tableauAbonnement})
