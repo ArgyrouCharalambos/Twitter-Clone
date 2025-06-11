@@ -253,19 +253,36 @@
                    
                   </div>
                   <div class="flex items-center gap-2">
-                 @if(likeVerifie.includes(publications.retweet?.idPublication))
-                 <a href="/like/{{publications.retweet.idPublication}}">         <div class="flex items-center gap-1">
+                    @if(publications.retweet?.idPublication)
+                    @if(likeVerifie.includes(publications.retweet?.idPublication))
+                    <a href="/like/{{publications.retweet.idPublication}}">         <div class="flex items-center gap-1">
+                     <img class="w-[30px] h-[30px] p-[7px] rounded-[50%] hover:bg-[#200914]" src="/icons/heart-red.svg"  alt="" />
+                     <p class="text-[#F91880]">
+                       {{publications.retweet?.publication?.nombreLike}}
+                     </p></div></a>
+                         @else
+                         <a href="/like/{{publications.retweet?.idPublication}}">         <div class="flex items-center gap-1">
+                           <img class="w-[30px] h-[30px] p-[7px] rounded-[50%] hover:bg-[#200914]" src="/icons/heart.svg" onmouseover="this.src='/icons/heart-red2.svg'"
+                           onmouseout="this.src='/icons/heart.svg'" alt="" />
+                           <p class="text-sand-10">
+                             {{publications.retweet?.publication?.nombreLike}}
+                           </p>
+                         </div></a>
+                           @endif
+                    @else
+                 @if(likeVerifie.includes(publications.id))
+                 <a href="/like/{{publications.id}}">         <div class="flex items-center gap-1">
                   <img class="w-[30px] h-[30px] p-[7px] rounded-[50%] hover:bg-[#200914]" src="/icons/heart-red.svg"  alt="" />
                   <p class="text-[#F91880]">
-                    {{publications.retweet?.publication?.nombreLike}}
+                    {{publications.nombreLike}}
                   </p></div></a>
                       @else
-                      @if(publications.retweet?.publication?.nombreLike)
-                      <a href="/like/{{publications.retweet?.idPublication}}">         <div class="flex items-center gap-1">
+                      @if(publications.nombreLike)
+                      <a href="/like/{{publications.id}}">         <div class="flex items-center gap-1">
                         <img class="w-[30px] h-[30px] p-[7px] rounded-[50%] hover:bg-[#200914]" src="/icons/heart.svg" onmouseover="this.src='/icons/heart-red2.svg'"
                         onmouseout="this.src='/icons/heart.svg'" alt="" />
                         <p class="text-sand-10">
-                          {{publications.retweet?.publication?.nombreLike}}
+                          {{publications.nombreLike}}
                         </p>
                       </div></a>
                         @else 
@@ -276,6 +293,7 @@
                           {{publications.nombreLike}}
                         </p>
                       </div></a>
+                        @endif
                         @endif
                         @endif
                    

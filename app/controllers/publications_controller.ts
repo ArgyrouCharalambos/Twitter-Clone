@@ -12,7 +12,9 @@ import Commentaire from '#models/commentaire'
 export default class PublicationsController {
 
     async home({view ,auth}:HttpContext){
-        const userPublication = (await Publication.query().preload('user')).reverse()
+        const userPublication = (await Publication.query().preload('user').preload("retweet", (e)=>{
+            e.preload("publication")
+        })).reverse()
 
         const userAll = (await User.query().whereNot('id',Number(auth.user?.id)).limit(3)).reverse();
 
