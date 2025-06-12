@@ -139,9 +139,9 @@
           </div>
         </form>
         @each(userPublications in userPublication)
-          <section class="border border-[#333639] flex p-2 gap-3 bg-black w-full">
+          <section class="border border-[#333639] flex p-2 gap-2 bg-black w-full">
             @if(userPublications.user.photoDeProfil)
-              <img class="w-10 h-10 rounded-[50%]" src="/uploads/{{ userPublications.user.photoDeProfil }}" alt="" />
+              <img class="w-9 h-9 rounded-[50%]" src="/uploads/{{ userPublications.user.photoDeProfil }}" alt="" />
             @else
               <div
                 class="w-[40px] h-[40px] bg-[#78909C]  text-white flex items-center justify-center rounded-[50%] px-4"
@@ -186,11 +186,11 @@
             </a>
             @endif
               @if(userPublications.media)
-              <img class="rounded-xl" src="uploads/{{ userPublications.media }}" alt="" />
+              <img class="rounded-xl w-[260px] max-w-[600px]" src="uploads/{{ userPublications.media }}" alt="" />
               @endif
               
 
-              <div class="md:w-[100%] w-[350px] flex gap-[110px] items-center">
+              <div class="md:w-[100%] w-[350px] flex md:gap-[110px] gap-[36px] items-center">
                 <div class="flex gap-2">
 
                   @if(userPublications?.retweet?.idPublication)

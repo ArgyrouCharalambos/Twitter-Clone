@@ -71,8 +71,8 @@
   <body class="bg-black h-full " id="body">
     <div id="allSection" class="flex h-full bg-black ">
       @include('components/navbar')
-     <section class="h-full lg:w-[400px] border-x-[0.5px] border-[#333639]">
-        <div class="flex justify-between items-center p-3 mb-3">
+     <section class="h-full lg:w-[400px] border-x-[0.5px] border-[#333639] hidden lg:block">
+        <div class="flex justify-between items-center p-3 mb-3 ">
             <p class="text-xl text-white font-bold">Messages</p>
             <div class="flex gap-1">
                 <img class="w-6 h-6" src="/icons/Settings.svg" alt="">
@@ -87,7 +87,7 @@
         <a href="/getMessage/{{userAlls.id}}" class="btnMessage w-full flex gap-2 p-3 hover:bg-[#16181C]">
           @if(userAlls.photoDeProfil)
           <img
-            class="lg:w-10 lg:h-10 md:w-[55px] rounded-[50%] md:mr-0 lg:mr-2"
+            class="lg:w-10 lg:h-10 md:w-[55px]  rounded-[50%] md:mr-0 lg:mr-2"
             src="/uploads/{{userAlls.photoDeProfil}}"
             alt=""
           />
@@ -104,38 +104,47 @@
         @end
 
      </section>
-     <form id="formulaire" method="POST" action="/message/{{(await userInconu).id}}" enctype="multipart/form-data" class="relative">
+     <form class="border-l-[0.5px] border-[#333639]" id="formulaire" method="POST" action="/message/{{(await userInconu).id}}" enctype="multipart/form-data" class="relative">
         {{ csrfField() }}
         <div class="flex items-center p-3 gap-2">
-          @if((await userInconu).photoDeProfil)
-          <img
-            class="lg:w-10 lg:h-10 md:w-[55px] rounded-[50%] md:mr-0 lg:mr-2"
-            src="/uploads/{{(await userInconu).photoDeProfil}}"
-            alt=""
-          />
-          @else
-          <div class="lg:w-10 lg:h-10 md:w-[55px] bg-[#78909C] text-white flex items-center justify-center rounded-[50%] md:mr-0 lg:mr-2">
-            <p>{{ (await userInconu).nom.charAt(0) }}</p>
-          </div>
-          @endif
+          <div class="flex items-center gap-[130px] md:gap-[485px] lg:gap-[450px]">
+           <div class="flex items-center gap-1">
+            @if((await userInconu).photoDeProfil)
+            <img
+              class="lg:w-10 lg:h-10 w-12 h-12 md:w-[55px] rounded-[50%] md:mr-0 lg:mr-2"
+              src="/uploads/{{(await userInconu).photoDeProfil}}"
+              alt=""
+            />
+            @else
+            <div class="lg:w-10 lg:h-10 md:w-[55px] bg-[#78909C] text-white flex items-center justify-center rounded-[50%] md:mr-0 lg:mr-2">
+              <p>{{ (await userInconu).nom.charAt(0) }}</p>
+            </div>
+            @endif
             <a href="/user/{{(await userInconu).id}}" id="nomUser" class="hover:underline text-white font-bold">{{(await userInconu).nom}} </a>
+
+           </div>
+          <a href="/messages">            <img class="w-11 h-11 hover:bg-sand-11 p-2 rounded-[50%] rounded-[50%]" src="/icons/arrow-back.svg" alt="" /></a>
+
+          </div>
+
         </div>
-        <div class="w-full">
+        <div class="flex flex-col w-[320px] md:w-[620px] pt-6">
+
             @each(message in messages)
   @if(message.idUtilisateurRecu === user?.id)
-    <p class=" ml-4 message-envoye  mb-3 text-white text-left bg-sand-10 rounded-xl py-1 px-2" >
+    <p class=" self-end lg:max-w-[520px] lg:w-[150px] mb-3 text-white  bg-sand-10 rounded-xl py-1 px-2" >
       {{ message.texte }}
     </p>
   @else
-    <p class="message-recu mb-3 text-white  bg-blue-500 relative left-[410px]  rounded-xl py-1 px-2">
+    <p class=" ml-3 mb-3 text-white lg:max-w-[520px] lg:w-[150px] bg-blue-500 self-start rounded-xl py-1 px-2">
       {{ message.texte }}
     </p>
   @endif
 @end
 
         </div>
-        <div class="absolute bottom-0 w-[620px] h-[60px] p-2 border-y-[0.5px] border-[#333639]">
-            <div class="bg-[#202327]  h-[40px] rounded-xl flex items-center">
+        <div class="absolute bottom-0 w-[320px] md:w-[90%] lg:w-[620px] h-[60px] p-2 border-y-[0.5px] border-[#333639]">
+            <div class="bg-[#202327] border border-[#202327] hover:border-blue-500  h-[40px] rounded-xl flex items-center">
                 <div class="flex gap-1 items-center pl-3 pr-2">
                 <label name="image"
                     class="text-[#D9D9D9] hover:bg-sand-11 rounded-[30px] w-7 h-7 flex items-center justify-center font-bold"
@@ -143,7 +152,7 @@
                   >             <img src="/icons/Top-Tweets.svg" alt="" /></label>
                   <input id="tweetImg" type="file" name="image" class="hidden"> 
                 </div>
-                <textarea name="texte" class="bg-[#202327] text-white outline-none border-none h-[25px] w-[450px] mr-8" placeholder="Start a new message" name="" id="" cols="30" rows="10"></textarea>
+                <textarea name="texte" class="bg-[#202327] text-white outline-none border-none h-[25px] w-[150px] md:w-[450px] mr-14" placeholder="Start a new message" name="" id="" cols="30" rows="10"></textarea>
                 <button type="submit">
                     <img class="w-6 h-6  rounded-[50%]" src="/icons/send-svgrepo-com.svg" alt="">
                 </button>

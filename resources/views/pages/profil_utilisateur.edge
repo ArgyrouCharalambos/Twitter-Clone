@@ -96,7 +96,7 @@
             </div>
             @endif
 
-            <div class="flex justify-between w-full  items-center p-3 absolute top-[45px] md:top-[120px] lg:top-[100px]">
+            <div class="flex justify-between w-full  items-center p-3 absolute top-[55px] md:top-[120px] lg:top-[100px]">
               @if(((await users).photoDeProfil))
               <img
                 class="md:w-[150px] md:h-[150px] w-[115px] h-[115px] border-4 border-black rounded-[50%]"
@@ -109,7 +109,7 @@
           <p>{{ ((await users).nom).charAt(0) }}</p>
         </div>
         @endif
-              <form class="relative lg:top-14" action="/followers/{{(await users).id}}" method="POST">
+              <form class="relative top-5 lg:top-14" action="/followers/{{(await users).id}}" method="POST">
                 {{ csrfField() }}
                 @if(tableauAbonnement.includes((await users).id))
                 <button type="submit" class="bg-sand-12 border-[0.5px] rounded-3xl h-9 py-1 px-2 text-white hover:text-red-500 hover:border-red-500 hover:bg-[#200A0C] font-bold rounded-[30px]">Unfollow</button>
@@ -169,10 +169,10 @@
           </div>
           <div>
             @each(publications in publication)
-            <section class="border-y-[0.5px] border-[#333639] flex p-3 gap-3 bg-black ">
+            <section class="border-y-[0.5px] border-[#333639] flex p-3 gap-2 bg-black ">
               @if((await users).photoDeProfil)
               <img
-                class="w-10 h-10 rounded-[50%]"
+                class="w-9 h-9 rounded-[50%]"
                 src="/uploads/{{(await users).photoDeProfil}}"
                 alt=""
               />
@@ -195,11 +195,11 @@
                   {{publications.texte}}
                 </a>
                 @if(publications.media)
-                <img src="/uploads/{{publications.media}}"  class="rounded-xl" alt="" />
+                <img src="/uploads/{{publications.media}}"  class="rounded-xl w-[260px] max-w-[600px]" alt="" />
              @endif
 
 
-             <div class="md:w-[100%] w-[350px] flex gap-[110px] items-center">
+             <div class="md:w-[100%] w-[330px] flex md:gap-[110px] gap-[36px] items-center">
               <div class="flex gap-2">
 
                 @if(publications?.retweet?.idPublication)

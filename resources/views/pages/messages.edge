@@ -71,7 +71,7 @@
   <body class="bg-black h-full " id="body">
     <div id="allSection" class="flex h-full bg-black ">
       @include('components/navbar')
-     <section class="h-full lg:w-[400px] border-x-[0.5px] border-[#333639]">
+     <section class="h-full w-full lg:w-[400px] border-x-[0.5px] border-[#333639]">
         <div class="flex justify-between items-center p-3 mb-3">
             <p class="text-xl text-white font-bold">Messages</p>
             <div class="flex gap-1">
@@ -79,14 +79,14 @@
             </div>
         </div>
         <div class="flex justify-center items-center mb-3">
-            <input placeholder="Search Direct Messages" class="pl-3 lg:w-[370px]  rounded-3xl bg-black border-[0.5px] hover:border-blue-400 border-[#333639] py-2" type="text" >
+            <input placeholder="Search Direct Messages" class="pl-3 lg:w-[370px] w-[90%] mx-[5%]  rounded-3xl bg-black border-[0.5px] hover:border-blue-400 border-[#333639] py-2" type="text" >
         </div>
            
         @each(userAlls in userAll)
         <a href="/getMessage/{{userAlls.id}}" class="btnMessage w-full flex gap-2 p-3 hover:bg-[#16181C]">
           @if(userAlls.photoDeProfil)
           <img
-            class="lg:w-10 lg:h-10 md:w-[55px] rounded-[50%] md:mr-0 lg:mr-2"
+            class="lg:w-10 lg:h-10 w-12 h-12 md:w-[55px] rounded-[50%] md:mr-0 lg:mr-2"
             src="/uploads/{{userAlls.photoDeProfil}}"
             alt=""
           />
@@ -103,7 +103,7 @@
         @end
 
      </section>
-   <div class="flex items-center justify-center">
+   <div class="flex items-center justify-center hidden lg:block">
     <div>
         <p class="text-white font-bold text-4xl pl-16">Bienvenue !</p>
     <p class="text-white font-bold text-4xl pl-16"> Consultez vos messages ici.</p>
