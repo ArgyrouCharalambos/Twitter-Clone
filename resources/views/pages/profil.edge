@@ -96,7 +96,7 @@
             </div>
             @endif
 
-            <div class="flex justify-between w-full  items-center p-3 absolute top-[45px] md:top-[120px] lg:top-[100px]">
+            <div class="flex justify-between w-full  items-center p-3 absolute top-[60px] md:top-[120px] lg:top-[100px]">
               @if(user?.photoDeProfil)
               <img
                 class="md:w-[150px] md:h-[150px] w-[115px] h-[115px] border-4 border-black rounded-[50%]"
@@ -109,7 +109,7 @@
           <p>{{ (user?.nom).charAt(0) }}</p>
         </div>
         @endif
-              <button type="button" id="btnEdit" class="hover:bg-[#181919] relative lg:top-9 md:top-8 top-5 font-bold border px-3 py-1 rounded-[30px]" >Edit profile</button>
+              <button type="button" id="btnEdit" class="hover:bg-[#181919] relative lg:top-9 md:top-8 top-10 font-bold border px-3 py-1 rounded-[30px]" >Edit profile</button>
             </div>
           </div>
           <div class="p-4 flex flex-col gap-1">
@@ -194,7 +194,7 @@
                 </a>
                 @endif
                 @if(publications.media)
-                <img src="uploads/{{publications.media}}"  class="rounded-xl w-[260px] max-w-[600px]" alt="" />
+                <img src="uploads/{{publications.media}}"  class="rounded-xl w-[260px] lg:w-[500px]" alt="" />
                 @endif
                 <div class="md:w-[100%] w-[350px] flex md:gap-[110px] gap-[38px] items-center">
                   <div class="flex gap-2">
