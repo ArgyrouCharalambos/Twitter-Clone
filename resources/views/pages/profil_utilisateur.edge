@@ -140,7 +140,7 @@
               </p>
               @endif
               @if((await users).lien !== null)
-              <a href="{{user?.lien}}" class="text-blue-500">
+              <a href="{{(await users).lien}}" class="text-blue-500">
                 {{(await users).lien}}
               </a>
               @endif
@@ -244,7 +244,7 @@
               <div class="flex gap-2">
                 @if(publications?.retweet?.idPublication)
                 @if(retweetVerifie.includes(publications.retweet?.idPublication))
-                  <a href="/retweet/{{ userPublications.retweet?.idPublication }}">                      <div class="flex gap-1">
+                  <a href="/retweet/{{ userPublications?.retweet?.idPublication }}">                      <div class="flex gap-1">
                       <img
                         class="w-[32px] h-[32px] p-[6px] rounded-[50%] hover:bg-[#071A14]"
                         src="/icons/retweet-vert.svg"
