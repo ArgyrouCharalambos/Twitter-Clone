@@ -16,7 +16,6 @@ export default class MessagesController {
 
     let { id } = params
 
-
     if (image) {
       await image.move(app.makePath('public/uploads'), {
         name: `${cuid()}.${image.extname}`,
@@ -43,10 +42,14 @@ export default class MessagesController {
 
     const messages = await Message.query()
       .where((groupeEnvoie) => {
-        groupeEnvoie.where('idUtilisateurEnvoie', Number(auth.user?.id)).where('idUtilisateurRecu', id)
+        groupeEnvoie
+          .where('idUtilisateurEnvoie', Number(auth.user?.id))
+          .where('idUtilisateurRecu', id)
       })
       .orWhere((groupeRécupération) => {
-        groupeRécupération.where('idUtilisateurEnvoie', id).where('idUtilisateurRecu', Number(auth.user?.id))
+        groupeRécupération
+          .where('idUtilisateurEnvoie', id)
+          .where('idUtilisateurRecu', Number(auth.user?.id))
       })
       .orderBy('createdAt', 'asc')
 
