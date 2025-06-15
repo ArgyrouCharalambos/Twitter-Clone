@@ -14,26 +14,11 @@ export default class FollowersAndFollowingsController {
 
     if (verification) {
       await verification.delete();
-
-      // const verification2 = await Follower.query()
-      //   .where('id_utilisateur_abonne', userId)
-      //   .andWhere('id_utilisateur',paramsId).first();
-
-      // if(verification2){
-      //   await verification2.delete();
-      // }
-
-
     } else {
       await Following.create({
         idUtilisateur:userId,
         idUtilisateurAbonnement: paramsId,
       });
-
-      // await Follower.create({
-      //   idUtilisateur: paramsId,
-      //   idUtilisateurAbonne: userId,
-      // });
     }
    response.redirect().back()
 
@@ -52,10 +37,6 @@ export default class FollowersAndFollowingsController {
     }
     
     const abonné = await Following.query().where("id_utilisateur_abonnement", Number(auth.user?.id)).whereNot('id_utilisateur',Number(auth.user?.id) ).preload("user")
-  
-    abonné.forEach((e)=>{
-      console.log(e.user.nom)
-    })
 
     return view.render("pages/followers" ,{abonné,tableauAbonnement,userAll,user:auth.user})
   }
@@ -73,10 +54,6 @@ export default class FollowersAndFollowingsController {
     
 
     const abonnement = await Following.query().where("id_utilisateur",Number(auth.user?.id)).preload("userAbonnement")
-
-    abonnement.forEach((e)=>{
-      console.log(e.userAbonnement.nom)
-    })
 
     return view.render("pages/followings",{abonnement,tableauAbonnement,userAll,user:auth.user})
   }

@@ -176,9 +176,6 @@ export default class UsersController {
         for(let e of existeOuPas){
             tableauAbonnement.push(e.idUtilisateurAbonnement)
         }
-        publication.forEach(e => {
-            console.log(e.retweet?.publication?.nombreLike)
-        });
         
 
         return view.render('pages/profil',{retweetVerifie,CommentaireVerifie,likeVerifie,user:auth.user ,publication,totalPost,userAll,total1,total2,tableauAbonnement})
