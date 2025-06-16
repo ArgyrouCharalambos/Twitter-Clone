@@ -96,9 +96,9 @@
             <p>{{ (userAlls.nom).charAt(0) }}</p>
           </div>
           @endif
-            <div class="flex">
+            <div class="flex gap-2">
                 <p class="text-white font-bold">{{userAlls.nom}}</p>
-            <p class="text-sand-10">@ {{userAlls.prenom}}</p>
+                <div class="text-sand-10 flex gap-0"><p>@</p><p>{{userAlls.prenom}}</p></div>
             </div>
         </a>
         @end

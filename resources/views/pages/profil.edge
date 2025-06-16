@@ -87,12 +87,12 @@
         </div>
 
         <div class="text-[#D9D9D9] border-r border-l border-[#333639]">
-          <div class="relative mb-[110px] md:mb-[110px] lg:mb-[90px] ">
+          <div class="relative mb-[90px] md:mb-[110px] lg:mb-[90px] ">
             @if(user?.photoDeCouverture)
             <img class="w-full lg:h-[200px]"
             src="/uploads/{{user?.photoDeCouverture}}" alt="">
             @else
-            <div class="w-full lg:h-[200px] bg-[#333639]">
+            <div class="w-full lg:h-[200px] h-[140px] bg-[#333639]">
             </div>
             @endif
 
@@ -117,9 +117,9 @@
               <p class="text-white font-bold text-xl">
                 {{user?.prenom}} {{user?.nom}}
               </p>
-              <p class="text-sand-9">
-                @ {{user?.nom}}
-              </p>
+              <div class="text-sand-9 flex gap-0">
+                <p>@</p><p>{{user?.nom}}</p>
+              </div>
             </div>
             @if(user?.biographie && user.biographie !== 'null')
             <p class="w-full text-sand-9">
@@ -377,7 +377,7 @@
     container.appendChild(sectionForm);
 
     const head = document.createElement("div");
-    head.className = "flex items-start mb-4   px-2 md:w-[520px] lg:w-[43%] w-[100%]"
+    head.className = "flex justify-between items-start mb-4   px-2 md:w-[520px] lg:w-[43%] w-[100%]"
     sectionForm.appendChild(head);
 
     const sectionHeadDescription = document.createElement("div");
@@ -449,13 +449,13 @@
 
     if(test !== 'null'){
       const photoCouverture = document.createElement("img");
-    photoCouverture.className = "w-full lg:h-[200px]";
+    photoCouverture.className = "w-full lg:h-[200px] mb-14";
     photoCouverture.src = "/uploads/{{user?.photoDeCouverture}}"
     labelProfil.appendChild(photoCouverture);
 
     }else{
       const div = document.createElement("div");
-      div.className = "w-full lg:h-[200px]  bg-[#333639]"
+      div.className = "w-full lg:h-[200px] mb-14 h-[140px]  bg-[#333639]"
       labelProfil.appendChild(div);
 
     }
@@ -479,14 +479,14 @@
     
     if(test2 !== "null"){
       const photoProfil = document.createElement("img");
-    photoProfil.className = "absolute lg:top-[160px] lg:left-[20px] border-4 border-black rounded-[50%] w-[120px] h-[120px]"
+    photoProfil.className = "absolute top-[100px] lg:top-[160px] lg:left-[20px] border-4 border-black rounded-[50%] w-[120px] h-[120px]"
     photoProfil.src = "/uploads/{{user?.photoDeProfil}}"
 
     labelProfil2.appendChild(photoProfil);
 
     } else{
       const sectionNon = document.createElement("div");
-      sectionNon.className = "absolute bg-[#78909C] lg:top-[160px] lg:left-[20px] w-[120px] h-[120px] rounded-[50%] flex items-center text-white text-[35px] justify-center";
+      sectionNon.className = "absolute bg-[#78909C] top-[90px] lg:top-[160px] left-[10px] lg:left-[20px] w-[120px] h-[120px] rounded-[50%] flex items-center text-white text-[35px] justify-center";
       labelProfil2.appendChild(sectionNon);
 
       const para = document.createElement("p");
@@ -495,14 +495,14 @@
       
     };
     const inputName = document.createElement("input");
-    inputName.className = "rounded-sm px-4 ml-3 border-[#333639] lg:w-[520px] py-3 bg-black lg:mt-[90px] border-[0.5px] text-white";
+    inputName.className = "rounded-sm mt-10 w-[90%] mb-2 px-4 ml-3 border-[#333639] lg:w-[520px] py-3 bg-black lg:mt-[90px] border-[0.5px] text-white";
     inputName.placeholder = "Nom";
     inputName.value = "{{user?.nom}}";
     inputName.name = "nom";
     sectionForm.appendChild(inputName);
 
     const inputPrenom = document.createElement("input");
-    inputPrenom.className = "rounded-sm px-4 ml-3 border-[#333639] lg:w-[520px] py-3 bg-black lg:mt-[20px] border-[0.5px] text-white";
+    inputPrenom.className = "rounded-sm px-4 w-[90%]  mb-2 ml-3 border-[#333639] lg:w-[520px] py-3 bg-black lg:mt-[20px] border-[0.5px] text-white";
     inputPrenom.placeholder = "Prenom";
     inputPrenom.value = "{{user?.prenom}}";
     inputPrenom.name = "prenom";
@@ -510,7 +510,7 @@
     sectionForm.appendChild(inputPrenom);
 
     const inputBiographie = document.createElement("input");
-    inputBiographie.className = "rounded-sm px-4 ml-3 border-[#333639] lg:w-[520px] py-3 bg-black lg:mt-[20px] border-[0.5px] text-white";
+    inputBiographie.className = "rounded-sm w-[90%] mb-2 px-4 ml-3 border-[#333639] lg:w-[520px] py-3 bg-black lg:mt-[20px] border-[0.5px] text-white";
     inputBiographie.placeholder = "Biographie";
     let testBio = "{{user?.biographie}}";
 
@@ -523,7 +523,7 @@
 
 
     const inputLocalisation = document.createElement("input");
-    inputLocalisation.className = "rounded-sm px-4 ml-3 border-[#333639] lg:w-[520px] py-3 bg-black lg:mt-[20px] border-[0.5px] text-white";
+    inputLocalisation.className = "rounded-sm px-4 mb-2 w-[90%] ml-3 border-[#333639] lg:w-[520px] py-3 bg-black lg:mt-[20px] border-[0.5px] text-white";
     inputLocalisation.placeholder = "Localisation";
 
     let testLoc = "{{user?.localisation}}";
@@ -537,7 +537,7 @@
     sectionForm.appendChild(inputLocalisation);
 
     const inputWebSite = document.createElement("input");
-    inputWebSite.className = "rounded-sm px-4 ml-3 border-[#333639] lg:w-[520px] py-3 bg-black lg:mt-[20px] border-[0.5px] text-white";
+    inputWebSite.className = "rounded-sm  mb-2 w-[90%] px-4 ml-3 border-[#333639] lg:w-[520px] py-3 bg-black lg:mt-[20px] border-[0.5px] text-white";
     inputWebSite.placeholder = "WebSite";
 
     let testlien = "{{user?.lien}}";
