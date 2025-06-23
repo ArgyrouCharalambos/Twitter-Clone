@@ -1,6 +1,5 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import Publication from '#models/publication'
-import app from '@adonisjs/core/services/app'
 import { cuid } from '@adonisjs/core/helpers'
 import User from '#models/user'
 import Following from '#models/following'

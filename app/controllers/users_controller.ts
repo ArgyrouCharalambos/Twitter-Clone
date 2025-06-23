@@ -6,7 +6,6 @@ import Retweet from '#models/retweet'
 import User from '#models/user'
 import { cuid } from '@adonisjs/core/helpers'
 import type { HttpContext } from '@adonisjs/core/http'
-import app from '@adonisjs/core/services/app'
 
 import supabase from '#start/supabase'
 import { promises as fs } from 'fs'
