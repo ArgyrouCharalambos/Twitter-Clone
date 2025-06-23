@@ -85,7 +85,7 @@
             @if(user?.photoDeProfil)
             <img
               class="w-10 h-10 rounded-[50%]"
-              src="/uploads/{{user?.photoDeProfil}}"
+              src="{{user?.photoDeProfil}}"
               alt=""
             />
             @else
@@ -137,7 +137,7 @@
           @if(userPublications.user.photoDeProfil)
           <img
             class="w-10 h-10 rounded-[50%]"
-            src="/uploads/{{userPublications.user.photoDeProfil}}"
+            src="{{userPublications.user.photoDeProfil}}"
             alt=""
           />
           @else
@@ -160,7 +160,7 @@
               {{userPublications.texte}}
             </p>
             @if(userPublications.media)
-            <img class="rounded-xl" src="/uploads/{{userPublications.media}}" alt="">
+            <img class="rounded-xl" src="{{userPublications.media}}" alt="">
             @endif
             
 

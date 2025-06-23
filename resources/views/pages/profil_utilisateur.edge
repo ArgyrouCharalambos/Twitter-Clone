@@ -90,7 +90,7 @@
           <div class="relative mb-[110px] md:mb-[110px] lg:mb-[90px] ">
             @if(((await users).photoDeCouverture))
             <img class="w-full lg:h-[200px]"
-            src="/uploads/{{(await users).photoDeCouverture}}" alt="">
+            src="{{(await users).photoDeCouverture}}" alt="">
             @else
             <div class="w-full lg:h-[200px] bg-[#333639]">
             </div>
@@ -100,7 +100,7 @@
               @if(((await users).photoDeProfil))
               <img
                 class="md:w-[150px] md:h-[150px] w-[115px] h-[115px] border-4 border-black rounded-[50%]"
-                src="/uploads/{{(await users).photoDeProfil}}"
+                src="{{(await users).photoDeProfil}}"
                 alt=""
               />
               @else
@@ -173,7 +173,7 @@
               @if((await users).photoDeProfil)
               <img
                 class="w-9 h-9 rounded-[50%]"
-                src="/uploads/{{(await users).photoDeProfil}}"
+                src="{{(await users).photoDeProfil}}"
                 alt=""
               />
               @else
@@ -195,7 +195,7 @@
                   {{publications.texte}}
                 </a>
                 @if(publications.media)
-                <img src="/uploads/{{publications.media}}"  class="rounded-xl w-[260px] lg:w-[500px]" alt="" />
+                <img src="{{publications.media}}"  class="rounded-xl w-[260px] lg:w-[500px]" alt="" />
              @endif
 
 

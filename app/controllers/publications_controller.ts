@@ -8,8 +8,12 @@ import Like from '#models/like'
 import Retweet from '#models/retweet'
 import Commentaire from '#models/commentaire'
 
+import supabase from '#start/supabase'
+import { promises as fs } from 'fs'
+
 export default class PublicationsController {
   async home({ view, auth }: HttpContext) {
+
     const userPublication = (
       await Publication.query()
         .preload('user')
@@ -66,17 +70,30 @@ export default class PublicationsController {
     const texteTweet: string = request.input('texteTweet')
     const image = request.file('image')
 
-    if (image) {
-      await image.move(app.makePath('public/uploads'), {
-        name: `${cuid()}.${image.extname}`,
-      })
-    }
+    if (image && texteTweet !== null) {
 
-    if (texteTweet !== null) {
+      const buffer = await fs.readFile(image.tmpPath!)
+      const fileName = `${cuid()}.${image.extname}`
+
+      await supabase.storage
+      .from('image')
+      .upload(fileName, buffer, {
+        contentType: image.type,
+        upsert: true,
+      })
+      
+
+      // await image.move(app.makePath('public/uploads'), {
+      //   name: `${cuid()}.${image.extname}`,
+      // })
+   
+      const  {data}  = supabase.storage.from('image').getPublicUrl(fileName)
+
+
       await Publication.create({
         texte: texteTweet,
         idUtilisateur: auth.user?.id,
-        media: image?.fileName || 'null',
+        media: data.publicUrl ?? 'null'
       })
     }
 
@@ -153,20 +170,35 @@ export default class PublicationsController {
     const image = request.file('image_commentaire')
     const publications = Publication.findOrFail(params.id)
 
-    ;(await publications).nombreCommentaire = (await publications).nombreCommentaire + 1
-    if (image) {
-      await image.move(app.makePath('public/uploads'), {
-        name: `${cuid()}.${image.extname}`,
-      })
-    }
-    ;(await publications).save()
+   
 
-    await Commentaire.create({
-      texte: texteTweet,
-      idUtilisateur: auth.user?.id,
-      idPublication: params.id,
-      media: image?.fileName,
-    })
+    if (image && texteTweet !== null) {
+
+      ;(await publications).nombreCommentaire = (await publications).nombreCommentaire + 1
+      ;(await publications).save()
+
+      const buffer = await fs.readFile(image.tmpPath!)
+      const fileName = `${cuid()}.${image.extname}`
+
+      await supabase.storage
+      .from('image')
+      .upload(fileName, buffer, {
+        contentType: image.type,
+        upsert: true,
+      })
+   
+      const  {data}  = supabase.storage.from('image').getPublicUrl(fileName)
+
+      await Commentaire.create({
+        texte: texteTweet,
+        idUtilisateur: auth.user?.id,
+        idPublication: params.id,
+        media: data.publicUrl
+      })
+
+    }
+
+   
 
     response.redirect().back()
   }

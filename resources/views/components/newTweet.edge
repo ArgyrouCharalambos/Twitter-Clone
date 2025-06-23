@@ -29,7 +29,7 @@
     let testPhoto = '{{user?.photoDeProfil}}'
     if(testPhoto !== 'null'){
       const image = document.createElement("img");
-      image.src = "/uploads/{{user?.photoDeProfil}}";
+      image.src = "{{user?.photoDeProfil}}";
       image.style.borderRadius = "50%";
     image.className = "rounded-[50%] w-[40px] h-[40px]"
     groupe2.appendChild(image);

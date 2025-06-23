@@ -8,6 +8,9 @@ import { cuid } from '@adonisjs/core/helpers'
 import type { HttpContext } from '@adonisjs/core/http'
 import app from '@adonisjs/core/services/app'
 
+import supabase from '#start/supabase'
+import { promises as fs } from 'fs'
+
 export default class UsersController {
   async create({ request, response, auth }: HttpContext) {
     let data = request.only(['nom', 'prenom', 'email', 'password'])
@@ -60,18 +63,35 @@ export default class UsersController {
       user.lien = lien
     }
     if (photoDeProfil) {
-      await photoDeProfil.move(app.makePath('public/uploads'), {
-        name: `${cuid()}.${photoDeProfil.extname}`,
+      const buffer = await fs.readFile(photoDeProfil.tmpPath!)
+      const fileName = `${cuid()}.${photoDeProfil.extname}`
+
+      await supabase.storage
+      .from('image')
+      .upload(fileName, buffer, {
+        contentType: photoDeProfil.type,
+        upsert: true,
       })
-      let photo = photoDeProfil?.fileName
-      user.photoDeProfil = String(photo)
+
+      const  {data}  = supabase.storage.from('image').getPublicUrl(fileName)
+
+      user.photoDeProfil = data.publicUrl
     }
     if (photoDeCouverture) {
-      await photoDeCouverture.move(app.makePath('public/uploads'), {
-        name: `${cuid()}.${photoDeCouverture.extname}`,
+      const buffer = await fs.readFile(photoDeCouverture.tmpPath!)
+      const fileName = `${cuid()}.${photoDeCouverture.extname}`
+
+      await supabase.storage
+      .from('image')
+      .upload(fileName, buffer, {
+        contentType: photoDeCouverture.type,
+        upsert: true,
       })
-      let photo = photoDeCouverture?.fileName
-      user.photoDeCouverture = String(photo)
+
+      const  {data}  = supabase.storage.from('image').getPublicUrl(fileName)
+
+      user.photoDeCouverture = data.publicUrl
+     
     }
 
     await user.save()

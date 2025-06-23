@@ -90,7 +90,7 @@
           <div class="relative mb-[90px] md:mb-[110px] lg:mb-[90px] ">
             @if(user?.photoDeCouverture)
             <img class="w-full lg:h-[200px]"
-            src="/uploads/{{user?.photoDeCouverture}}" alt="">
+            src="{{user?.photoDeCouverture}}" alt="">
             @else
             <div class="w-full lg:h-[200px] h-[140px] bg-[#333639]">
             </div>
@@ -100,7 +100,7 @@
               @if(user?.photoDeProfil)
               <img
                 class="md:w-[150px] md:h-[150px] w-[115px] h-[115px] border-4 border-black rounded-[50%]"
-                src="/uploads/{{user?.photoDeProfil}}"
+                src="{{user?.photoDeProfil}}"
                 alt=""
               />
               @else
@@ -166,7 +166,7 @@
               @if(user?.photoDeProfil)
               <img
                 class="w-8 h-8 rounded-[50%]"
-                src="/uploads/{{user?.photoDeProfil}}"
+                src="{{user?.photoDeProfil}}"
                 alt=""
               />
               @else
@@ -194,7 +194,7 @@
                 </a>
                 @endif
                 @if(publications.media)
-                <img src="uploads/{{publications.media}}"  class="rounded-xl w-[260px] lg:w-[500px]" alt="" />
+                <img src="{{publications.media}}"  class="rounded-xl w-[260px] lg:w-[500px]" alt="" />
                 @endif
                 <div class="md:w-[100%] w-[350px] flex md:gap-[110px] gap-[38px] items-center">
                   <div class="flex gap-2">
@@ -450,7 +450,7 @@
     if(test !== 'null'){
       const photoCouverture = document.createElement("img");
     photoCouverture.className = "w-full lg:h-[200px] mb-14";
-    photoCouverture.src = "/uploads/{{user?.photoDeCouverture}}"
+    photoCouverture.src = "{{user?.photoDeCouverture}}"
     labelProfil.appendChild(photoCouverture);
 
     }else{
@@ -480,7 +480,7 @@
     if(test2 !== "null"){
       const photoProfil = document.createElement("img");
     photoProfil.className = "absolute top-[100px] lg:top-[160px] lg:left-[20px] border-4 border-black rounded-[50%] w-[120px] h-[120px]"
-    photoProfil.src = "/uploads/{{user?.photoDeProfil}}"
+    photoProfil.src = "{{user?.photoDeProfil}}"
 
     labelProfil2.appendChild(photoProfil);
 

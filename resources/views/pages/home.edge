@@ -88,7 +88,7 @@
           {{ csrfField() }}
           <div class="flex p-5 gap-2 pb-0">
             @if(user?.photoDeProfil)
-              <img class="w-10 h-10 rounded-[50%]" src="/uploads/{{ user?.photoDeProfil }}" alt="" />
+              <img class="w-10 h-10 rounded-[50%]" src="{{ user?.photoDeProfil }}" alt="" />
             @else
               <div
                 class="w-[40px] h-[40px] bg-[#78909C]  text-white flex items-center justify-center rounded-[50%] px-4"
@@ -141,7 +141,7 @@
         @each(userPublications in userPublication)
           <section class="border border-[#333639] flex p-2 gap-2 bg-black w-full">
             @if(userPublications.user.photoDeProfil)
-              <img class="w-9 h-9 rounded-[50%]" src="/uploads/{{ userPublications.user.photoDeProfil }}" alt="" />
+              <img class="w-9 h-9 rounded-[50%]" src="{{ userPublications.user.photoDeProfil }}" alt="" />
             @else
               <div
                 class="w-[40px] h-[40px] bg-[#78909C]  text-white flex items-center justify-center rounded-[50%] px-4"
@@ -186,7 +186,7 @@
             </a>
             @endif
               @if(userPublications.media)
-              <img class="rounded-xl w-[260px] lg:w-[500px]" src="uploads/{{ userPublications.media }}" alt="" />
+              <img class="rounded-xl w-[260px] lg:w-[500px]" src="{{ userPublications.media }}" alt="" />
               @endif
               
 
